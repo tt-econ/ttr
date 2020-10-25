@@ -62,7 +62,6 @@ The production cycle is as follows:
 6. Documentation is via `roxygen2`, provided through `devtools`.
 
       ```R
-         # install.packages("devtools")
          devtools::document()
       ```
 
@@ -71,3 +70,5 @@ The production cycle is as follows:
 ### `ggplot` support functions
 
 - `geom_split_violin()` for a split version of `geom_violin()` which can be useful to compare variable distributions by group (for example, treatment and control groups)
+- `ttcolor` and `ttpalette` to access ttecon colors and color palettes
+- `scale_color_tt` and `scale_fill_tt` to use with `ggplot`
