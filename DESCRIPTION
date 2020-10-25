@@ -1,0 +1,26 @@
+Package: ttr
+Title: Commonly Used R Functions for TTecon Team
+Version: 0.0.1
+Authors@R: c(
+    person(given = "Linh",
+           family = "Tô",
+           role = c("aut", "cre"),
+           email = "r@linh.to"),
+    person(given = "Neil",
+           family = "Thakral",
+           role = c("aut"),
+           email = "neil_thakral@brown.edu")
+    )
+Description: This package includes R functions used by ttecon team.
+    It includes ggplot functions and others.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports:
+    ggplot2,
+    plyr
+Suggests:
+    testthat,
+    vdiffr
