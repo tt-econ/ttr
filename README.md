@@ -1,7 +1,7 @@
 # Commonly used R functions for ttecon team
 <!-- badges: start -->
 [![R build status](https://github.com/ttecon/ttr/workflows/R-CMD-check/badge.svg)](https://github.com/ttecon/ttr/actions)
-[![Codecov test coverage](https://codecov.io/gh/ttecon/ttr/branch/master/graph/badge.svg)](https://codecov.io/gh/ttecon/ttr?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/ttecon/ttr/branch/main/graph/badge.svg)](https://codecov.io/gh/ttecon/ttr?branch=main)
 <!-- badges: end -->
 
 ## Overview
