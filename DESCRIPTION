@@ -11,7 +11,7 @@ Authors@R: c(
            role = c("aut"),
            email = "neil_thakral@brown.edu")
     )
-Description: This package includes R functions used by ttecon team.
+Description: R functions used by ttecon team.
     It includes ggplot functions, custom color palettes, and others.
 License: GPL-3
 Encoding: UTF-8

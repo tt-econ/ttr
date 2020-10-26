@@ -6,6 +6,7 @@
 \usage{
 theme_tt(
   style = "slide",
+  font = NULL,
   palette = "green",
   xaxis = TRUE,
   yaxis = FALSE,
@@ -18,9 +19,12 @@ theme_tt(
 )
 }
 \arguments{
-\item{style}{Change the font family.
-Defaults to "slide" for TeX Gyre Heros
-Change to "paper" for Latin Modern Roman}
+\item{style}{Change the font and color family.
+Defaults to "slide" for TeX Gyre Heros (if \code{font} is \verb{NULL) and colored axes (if }axis_color\code{is}NULL\verb{) Change to "paper" for Latin Modern Roman (if }font\code{is}NULL)
+and black axes (if \code{axis_color} is \code{NULL})}
+
+\item{font}{Change the font family.
+Defaults to \code{NULL} to use the defaults based on \code{style}.}
 
 \item{palette}{Change the palette
 Defaults to "green" for green-shaded lines

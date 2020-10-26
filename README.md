@@ -67,7 +67,7 @@ The production cycle is as follows:
 
 ## Functionality
 
-### `ggplot` support functions
+### Support functions for `ggplot`
 
 - `geom_split_violin()` for a split version of `geom_violin()` which can be useful to compare variable distributions by group (for example, treatment and control groups)
 - `ttcolor()` and `ttpalette()` to access ttecon colors and color palettes
