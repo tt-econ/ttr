@@ -38,18 +38,25 @@ ttcolor <- function(...) {
   ttcolor_defn[cols]
 }
 
-ttpalettes <- list(
-  `contrast` = ttcolor("green", "orange", "blue", "brown"),
 
-  `main` = ttcolor("green", "blue", "orange", "brown"),
+#' A list of tt color palettes
+#'
+#' Each palette is a list of pre-defined tt colors
+#'
+#'
+#' @export
+ttpalettes <- list(
+  `contrast` = ttcolor("green", "orange", "blue", "light purple", "brown"),
+
+  `main` = ttcolor("green", "blue", "light purple", "orange", "brown"),
 
   `green` = ttcolor("green", "gradient green"),
 
   `brown` = ttcolor("brown", "gradient brown"),
 
-  `light` = ttcolor("light green", "light blue", "light pink", "light purple", "light brown"),
+  `light` = ttcolor("light green", "light blue", "light pink", "yellow", "light brown"),
 
-  `light contrast` = ttcolor("light green", "light pink", "light blue", "light purple", "light brown")
+  `light contrast` = ttcolor("light green", "yellow", "light blue", "light pink", "light brown")
 )
 
 ttpalettes[["light green"]] <- ttpalettes[["light"]]
