@@ -3,6 +3,7 @@
 export(geom_split_violin)
 export(scale_color_tt)
 export(scale_fill_tt)
+export(theme_tt)
 export(ttcolor)
 export(ttpalette)
 export(ttpalettes)

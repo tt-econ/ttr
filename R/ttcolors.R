@@ -71,6 +71,15 @@ ttpalettes[["contrast green"]] <- ttpalettes[["contrast"]]
 
 ttpalettes[["contrast brown"]] <- rev(ttpalettes[["contrast"]])
 
+old_names <- names(ttpalettes)
+for (name in old_names) {
+  words_in_name <- unlist(strsplit(name, " "))
+  if (!is.na(words_in_name[2])) {
+    swapped_name <- paste(words_in_name[2], words_in_name[1])
+    ttpalettes[[swapped_name]] <- ttpalettes[[name]]
+  }
+}
+
 #' ttpalette(n) function
 #'
 #' Return function(n) to interpolate a ttcolor palette
