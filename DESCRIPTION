@@ -22,7 +22,8 @@ Imports:
     plyr,
     grDevices,
     showtext,
-    sysfonts
+    sysfonts,
+    shades
 Suggests:
     testthat,
     vdiffr

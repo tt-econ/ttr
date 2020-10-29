@@ -10,7 +10,7 @@ theme_tt(
   palette = "green",
   xaxis = TRUE,
   yaxis = FALSE,
-  axis_color = NULL,
+  axis_text_color_style = "style",
   xgrid = FALSE,
   ygrid = TRUE,
   legend = TRUE,
@@ -19,16 +19,15 @@ theme_tt(
 )
 }
 \arguments{
-\item{style}{Change the font and color family.
-Defaults to "slide" for TeX Gyre Heros (if \code{font} is \verb{NULL) and colored axes (if }axis_color\code{is}NULL\verb{) Change to "paper" for Latin Modern Roman (if }font\code{is}NULL)
-and black axes (if \code{axis_color} is \code{NULL})}
+\item{style}{Change the font family.
+Defaults to "slide" for TeX Gyre Heros (if \code{font} is \verb{NULL) Change to "paper" for Latin Modern Roman (if }font\code{is}NULL)}
 
 \item{font}{Change the font family.
 Defaults to \code{NULL} to use the defaults based on \code{style}.}
 
 \item{palette}{Change the palette
-Defaults to "green" for green-shaded lines
-Change to "brown" for brown-shaded lines}
+Defaults to \code{"green"} for green-shaded lines
+Change to \code{"brown"} for brown-shaded lines}
 
 \item{xaxis}{x-axis line if \code{TRUE}
 Defaults to \code{TRUE}
@@ -38,9 +37,9 @@ The line is colored "green" for a green palette and is colored "brown" for a bro
 Defaults to \code{FALSE}
 The line is colored "green" for a green palette and is colored "brown" for a brown palette.}
 
-\item{axis_color}{Defines the color for axis titles, lines and text.
-If \code{NULL} then use the palette color if style is "slide" and black otherwise.
-Defaults to \code{NULL}}
+\item{axis_text_color_style}{Defines the color style for axis titles and text.
+If \verb{"style} then use a saturated palette color, and then use the default colors otherwise.
+Defaults to \code{"style"}}
 
 \item{xgrid}{Turn on major x-grid-lines if \code{TRUE}
 Defaults to \code{FALSE}

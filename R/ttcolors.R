@@ -46,9 +46,9 @@ ttcolor <- function(...) {
 #'
 #' @export
 ttpalettes <- list(
-  `contrast` = ttcolor("green", "orange", "blue", "light purple", "brown"),
+  `main` = ttcolor("green", "orange", "blue", "light purple", "brown"),
 
-  `main` = ttcolor("green", "blue", "light purple", "orange", "brown"),
+  `main2` = ttcolor("green", "blue", "light purple", "orange", "brown"),
 
   `green` = ttcolor("green", "gradient green"),
 
@@ -67,9 +67,9 @@ ttpalettes[["main green"]] <- ttpalettes[["main"]]
 
 ttpalettes[["main brown"]] <- rev(ttpalettes[["main"]])
 
-ttpalettes[["contrast green"]] <- ttpalettes[["contrast"]]
+ttpalettes[["main2 green"]] <- ttpalettes[["main2"]]
 
-ttpalettes[["contrast brown"]] <- rev(ttpalettes[["contrast"]])
+ttpalettes[["main2 brown"]] <- rev(ttpalettes[["main2"]])
 
 old_names <- names(ttpalettes)
 for (name in old_names) {
@@ -111,11 +111,12 @@ ttpalette <- function(palette = "main", reverse = FALSE, nmax = NULL, order = NU
       )
     }
     if (nmax > length(pal)) {
-      warning("Original color palette does not have sufficient colors. ",
-        "Colors are being interpolated with grDevices::colorRampPalette.",
-        call. = FALSE
-      )
-
+      if ((palette != "green") & (palette != "brown")) {
+        warning("Original color palette does not have sufficient colors. ",
+          "Colors are being interpolated with grDevices::colorRampPalette.",
+          call. = FALSE
+        )
+      }
       pal <- grDevices::colorRampPalette(pal, ...)(nmax)
     } else {
       pal <- grDevices::colorRampPalette(pal[1:nmax], ...)(nmax)
