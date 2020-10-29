@@ -2,9 +2,13 @@
 #'
 #' Theme for ttecon figures.
 #'
-#' @param style Change the font family.
-#' Defaults to "slide" for TeX Gyre Heros
-#' Change to "paper" for Latin Modern Roman
+#' @param style Change the font and color family.
+#' Defaults to "slide" for TeX Gyre Heros (if `font` is `NULL)
+#'  and colored axes (if `axis_color` is `NULL`)
+#' Change to "paper" for Latin Modern Roman (if `font` is `NULL)
+#'  and black axes (if `axis_color` is `NULL`)
+#' @param font Change the font family.
+#' Defaults to `NULL` to use the defaults based on `style`.
 #' @param palette Change the palette
 #' Defaults to "green" for green-shaded lines
 #' Change to "brown" for brown-shaded lines
@@ -48,14 +52,16 @@
 #'   theme_tt(style = "paper") +
 #'   scale_color_tt()
 #' @export
-theme_tt <- function(style = "slide", palette = "green",
+theme_tt <- function(style = "slide", font = NULL, palette = "green",
                      xaxis = TRUE, yaxis = FALSE, axis_color = NULL,
                      xgrid = FALSE, ygrid = TRUE, legend = TRUE,
                      axis_title = TRUE, axis_title_just = "rt") {
-  if (style == "slide") {
-    font <- "heros"
-  } else {
-    font <- "lmroman"
+  if (is.null(font)) {
+    if (style == "slide") {
+      font <- "heros"
+    } else {
+      font <- "lmroman"
+    }
   }
 
   if (palette == "green") {
