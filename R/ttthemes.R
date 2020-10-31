@@ -3,8 +3,8 @@
 #' Theme for ttecon figures.
 #'
 #' @param style Change the font family.
-#' Defaults to "slide" for TeX Gyre Heros (if `font` is `NULL)
-#' Change to "paper" for Latin Modern Roman (if `font` is `NULL)
+#' Defaults to `"slide"` for TeX Gyre Heros (if `font` is `NULL)
+#' Change to `"paper"` for Latin Modern Roman (if `font` is `NULL)
 #' @param font Change the font family.
 #' Defaults to `NULL` to use the defaults based on `style`.
 #' @param palette Change the palette
@@ -23,7 +23,7 @@
 #' Defaults to `TRUE`
 #' The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.
 #' @param axis_text_color_style define the color style for axis titles and text.
-#' If `"style` then use a saturated palette color, and then use the default colors otherwise.
+#' If `"style"` then use a saturated palette color, use the default colors otherwise.
 #' Defaults to `"style"`
 #' @param axis_title_just axis title font justification, one of `[blmcrt]`
 #' Defaults to `"mm"`
@@ -186,3 +186,19 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
 
   tttheme
 }
+
+#' Default font for slides
+#'
+#' This font is automatically imported with `ttr`: TeX Gyre Heros
+#'
+#'
+#' @export
+slide_font <- "heros"
+
+#' Default font for papers
+#'
+#' This font is automatically imported with `ttr`: Latin Modern Roman
+#'
+#'
+#' @export
+paper_font <- "lmroman"

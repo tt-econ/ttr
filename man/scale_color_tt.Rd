@@ -15,9 +15,9 @@ scale_color_tt(
 )
 }
 \arguments{
-\item{palette}{Character name of palette. Run \code{names(ttpalettes)} for available options.}
+\item{palette}{Character name of palette. Run \code{names(ttr::ttpalettes)} for available options.}
 
-\item{aesthetics}{Default to \code{color} for \code{scale_color_tt} and \code{fill} for \code{scale_fill_tt}}
+\item{aesthetics}{Default to \code{color} for \code{\link[=scale_color_tt]{scale_color_tt()}} and \code{fill} for \code{\link[=scale_fill_tt]{scale_fill_tt()}}}
 
 \item{discrete}{Boolean indicating whether color aesthetic is discrete or not}
 
@@ -25,10 +25,10 @@ scale_color_tt(
 
 \item{nmax}{Maximum number of different colors the palette should contain. If not provided, is calculated automatically from the data.}
 
-\item{order}{Numeric vector listing the order in which the colors should be used. Default is 1:nmax.}
+\item{order}{Numeric vector listing the order in which the colors should be used. Default is \code{1:nmax}.}
 
-\item{...}{Additional arguments passed to \code{discrete_scale()} or
-\code{scale_color_gradientn()}, used respectively when discrete is TRUE or FALSE}
+\item{...}{Additional arguments passed to \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}} or
+\code{\link[ggplot2:scale_gradient]{ggplot2::scale_color_gradientn()}}, used respectively when discrete is \code{TRUE} or \code{FALSE}}
 }
 \description{
 To be used in a ggplot, with option \code{discrete} set to \code{TRUE} for discrete values

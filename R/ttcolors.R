@@ -75,9 +75,9 @@ for (name in old_names) {
 #'
 #' @param palette Character name of palette. Run `names(ttpalettes)` for available options.
 #' @param nmax Maximum number of different colors the palette should contain. If not provided, is calculated automatically from the data.
-#' @param reverse If TRUE, reverses the order of the colors in the color scale
-#' @param order Numeric vector listing the order in which the colors should be used. Default is 1:nmax.
-#' @param ... Additional arguments to pass to grDevices::colorRampPalette()
+#' @param reverse If `TRUE`, reverses the order of the colors in the color scale
+#' @param order Numeric vector listing the order in which the colors should be used. Default is `1:nmax`.
+#' @param ... Additional arguments to pass to [grDevices::colorRampPalette()]
 #' @return Color palette function(n)
 #' @export
 #'
@@ -119,14 +119,14 @@ ttpalette <- function(palette = "main", reverse = FALSE, nmax = NULL, order = NU
 #'
 #' To be used in a ggplot, with option `discrete` set to `TRUE` for discrete values
 #'
-#' @param palette Character name of palette. Run `names(ttpalettes)` for available options.
+#' @param palette Character name of palette. Run `names(ttr::ttpalettes)` for available options.
 #' @param discrete Boolean indicating whether color aesthetic is discrete or not
 #' @param nmax Maximum number of different colors the palette should contain. If not provided, is calculated automatically from the data.
 #' @param reverse If TRUE, reverses the order of the colors in the color scale
-#' @param order Numeric vector listing the order in which the colors should be used. Default is 1:nmax.
-#' @param aesthetics Default to `color` for `scale_color_tt` and `fill` for `scale_fill_tt`
-#' @param ... Additional arguments passed to `discrete_scale()` or
-#'            `scale_color_gradientn()`, used respectively when discrete is TRUE or FALSE
+#' @param order Numeric vector listing the order in which the colors should be used. Default is `1:nmax`.
+#' @param aesthetics Default to `color` for [scale_color_tt()] and `fill` for [scale_fill_tt()]
+#' @param ... Additional arguments passed to [ggplot2::discrete_scale()] or
+#'            [ggplot2::scale_color_gradientn()], used respectively when discrete is `TRUE` or `FALSE`
 #' @export
 #'
 scale_color_tt <- function(palette = "main", aesthetics = "color", discrete = TRUE, reverse = FALSE, nmax = NULL, order = NULL, ...) {
@@ -147,7 +147,8 @@ scale_color_tt <- function(palette = "main", aesthetics = "color", discrete = TR
 
 #' Fill scale constructor for ttcolors
 #'
-#' To be used in a ggplot, with option `discrete` set to `TRUE` for discrete values
+#' To be used in a ggplot, with option `discrete` set to `TRUE` for discrete values.
+#' See [scale_color_tt()] for more.
 #'
 #' @inheritParams scale_color_tt
 #' @export

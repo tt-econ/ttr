@@ -22,7 +22,7 @@ theme_tt(
 }
 \arguments{
 \item{style}{Change the font family.
-Defaults to "slide" for TeX Gyre Heros (if \code{font} is \verb{NULL) Change to "paper" for Latin Modern Roman (if }font\code{is}NULL)}
+Defaults to \code{"slide"} for TeX Gyre Heros (if \code{font} is \verb{NULL) Change to }"paper"\verb{for Latin Modern Roman (if}font\code{is}NULL)}
 
 \item{font}{Change the font family.
 Defaults to \code{NULL} to use the defaults based on \code{style}.}
@@ -40,7 +40,7 @@ Defaults to \code{FALSE}
 The line is colored "green" for a green palette and is colored "brown" for a brown palette.}
 
 \item{axis_text_color_style}{define the color style for axis titles and text.
-If \verb{"style} then use a saturated palette color, and then use the default colors otherwise.
+If \code{"style"} then use a saturated palette color, use the default colors otherwise.
 Defaults to \code{"style"}}
 
 \item{xgrid}{turn on major x-grid-lines if \code{TRUE}

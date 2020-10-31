@@ -27,11 +27,11 @@ You must supply mapping if there is no plot mapping.}
 \item{data}{The data to be displayed in this layer. There are three options:
 
 If \code{NULL}, the default, the data is inherited from the plot data
-as specified in the call to \code{ggplot()}.
+as specified in the call to \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot data.
 All objects will be fortified to produce a data frame.
-See \code{fortify()} for which variables will be created.
+See \code{\link[ggplot2:fortify]{ggplot2::fortify()}} for which variables will be created.
 
 A function will be called with a single argument, the plot data.
 The return value must be a \code{data.frame}, and will be used as the layer data.
@@ -47,15 +47,15 @@ These are often aesthetics, used to set an aesthetic to a fixed value,
 like \code{colour = "red"} or \code{size = 3}.
 They may also be parameters to the paired geom/stat.}
 
-\item{draw_quantiles}{If \verb{not(NULL}) (default), draw horizontal lines
+\item{draw_quantiles}{If \code{not(NULL)} (default), draw horizontal lines
 at the given quantiles of the density estimate.}
 
 \item{trim}{If \code{TRUE }(default), trim the tails of the violins to the range of the data.
 If \code{FALSE}, don't trim the tails.}
 
-\item{scale}{If "area" (default), all violins have the same area (before trimming the tails).
-If "count", areas are scaled proportionally to the number of observations.
-If "width", all violins have the same maximum width.}
+\item{scale}{If \code{"area"} (default), all violins have the same area (before trimming the tails).
+If \code{"count"}, areas are scaled proportionally to the number of observations.
+If \code{"width"}, all violins have the same maximum width.}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with a warning.
 If \code{TRUE}, missing values are silently removed.}
@@ -68,14 +68,14 @@ It can also be a named logical vector to finely select the aesthetics to display
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them.
 This is most useful for helper functions that define both data and aesthetics
-and shouldn't inherit behaviour from the default plot specification, e.g. \code{borders()}.}
+and shouldn't inherit behaviour from the default plot specification, e.g. \code{\link[ggplot2:borders]{ggplot2::borders()}}.}
 }
 \description{
 This function is to plot the split violin graph.
-It is built on ggplot2's \code{geom_violin()},
+It is built on \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}},
 and adopted from jan-glx's stackoverflow answer \url{https://stackoverflow.com/a/45614547}
 A violin plot is a compact display of a continuous distribution.
-It is a blend of \code{geom_boxplot()} and \code{geom_density()}:
+It is a blend of \code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}} and \code{\link[ggplot2:geom_density]{ggplot2::geom_density()}}:
 A violin plot is a mirrored density plot displayed in the same way as a boxplot.
 A split violin plot allows for odd violins to be plotted to the left,
 and even violins to be plotted to the right
