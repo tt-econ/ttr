@@ -56,27 +56,16 @@ ttpalettes <- list(
 
   `light` = ttcolor("light green", "light blue", "light pink", "yellow", "light brown"),
 
-  `light contrast` = ttcolor("light green", "yellow", "light blue", "light pink", "light brown")
+  `light2` = ttcolor("light green", "yellow", "light blue", "light pink", "light brown")
 )
-
-ttpalettes[["light green"]] <- ttpalettes[["light"]]
-
-ttpalettes[["light brown"]] <- rev(ttpalettes[["light"]])
-
-ttpalettes[["main green"]] <- ttpalettes[["main"]]
-
-ttpalettes[["main brown"]] <- rev(ttpalettes[["main"]])
-
-ttpalettes[["main2 green"]] <- ttpalettes[["main2"]]
-
-ttpalettes[["main2 brown"]] <- rev(ttpalettes[["main2"]])
 
 old_names <- names(ttpalettes)
 for (name in old_names) {
-  words_in_name <- unlist(strsplit(name, " "))
-  if (!is.na(words_in_name[2])) {
-    swapped_name <- paste(words_in_name[2], words_in_name[1])
-    ttpalettes[[swapped_name]] <- ttpalettes[[name]]
+  if (!name %in% c("green", "brown")) {
+    ttpalettes[[paste(name, "green")]] <- ttpalettes[[name]]
+    ttpalettes[[paste(name, "brown")]] <- rev(ttpalettes[[name]])
+    ttpalettes[[paste("green", name)]] <- ttpalettes[[name]]
+    ttpalettes[[paste("brown", name)]] <- rev(ttpalettes[[name]])
   }
 }
 
@@ -169,5 +158,5 @@ scale_fill_tt <- function(palette = "main", aesthetics = "fill", discrete = TRUE
   if (is.null(args[["aesthetics"]])) {
     args$aesthetics <- "fill"
   }
-  do.call(scale_color_tt, args)
+  do.call(scale_color_tt, args, envir = parent.frame())
 }

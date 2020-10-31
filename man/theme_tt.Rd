@@ -13,9 +13,11 @@ theme_tt(
   axis_text_color_style = "style",
   xgrid = FALSE,
   ygrid = TRUE,
-  legend = TRUE,
+  legend = FALSE,
   axis_title = TRUE,
-  axis_title_just = "rt"
+  axis_title_just = "mm",
+  xticks = FALSE,
+  yticks = FALSE
 )
 }
 \arguments{
@@ -37,26 +39,32 @@ The line is colored "green" for a green palette and is colored "brown" for a bro
 Defaults to \code{FALSE}
 The line is colored "green" for a green palette and is colored "brown" for a brown palette.}
 
-\item{axis_text_color_style}{Defines the color style for axis titles and text.
+\item{axis_text_color_style}{define the color style for axis titles and text.
 If \verb{"style} then use a saturated palette color, and then use the default colors otherwise.
 Defaults to \code{"style"}}
 
-\item{xgrid}{Turn on major x-grid-lines if \code{TRUE}
+\item{xgrid}{turn on major x-grid-lines if \code{TRUE}
 Defaults to \code{FALSE}
 The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.}
 
-\item{ygrid}{Turn on major y-grid-lines if \code{TRUE}
+\item{ygrid}{turn on major y-grid-lines if \code{TRUE}
 Defaults to \code{TRUE}
 The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.}
 
 \item{legend}{allow legend if \code{TRUE}
-Defaults to \code{TRUE}}
+Defaults to \code{FALSE}}
 
 \item{axis_title}{allow axis titles if \code{TRUE}
 Defaults to \code{TRUE}}
 
 \item{axis_title_just}{axis title font justification, one of \verb{[blmcrt]}
-Defaults to \code{"rt"}}
+Defaults to \code{"mm"}}
+
+\item{xticks}{add x-ticks if \code{TRUE}
+Defaults to \code{FALSE}}
+
+\item{yticks}{add y-ticks if \code{TRUE}
+Defaults to \code{FALSE}}
 }
 \value{
 ggplot theme
