@@ -2,39 +2,42 @@
 #'
 #' Theme for ttecon figures.
 #'
-#' @param style Change the font family.
-#' Defaults to `"slide"` for TeX Gyre Heros (if `font` is `NULL)
-#' Change to `"paper"` for Latin Modern Roman (if `font` is `NULL)
+#' @param style Change the theme style.
+#' Default to `"slide"` for TeX Gyre Heros (if `font` is `NULL) and themed axis title and text.
+#' Change to `"paper"` for Latin Modern Roman (if `font` is `NULL) and black axis title and text.
 #' @param font Change the font family.
-#' Defaults to `NULL` to use the defaults based on `style`.
-#' @param palette Change the palette
-#' Defaults to `"green"` for green-shaded lines
-#' Change to `"brown"` for brown-shaded lines
-#' @param xaxis x-axis line if `TRUE`
-#' Defaults to `TRUE`
+#' Default to `NULL` to use the defaults based on `style`.
+#' @param palette Change the palette.
+#' Default to `"green"` for green-shaded lines.
+#' Change to `"brown"` for brown-shaded lines.
+#' @param xaxis x-axis line if `TRUE`.
+#' Default to `TRUE`,
 #' The line is colored "green" for a green palette and is colored "brown" for a brown palette.
-#' @param yaxis y-axis line if `TRUE`
-#' Defaults to `FALSE`
+#' @param yaxis y-axis line if `TRUE`.
+#' Default to `FALSE`.
 #' The line is colored "green" for a green palette and is colored "brown" for a brown palette.
-#' @param xgrid turn on major x-grid-lines if `TRUE`
-#' Defaults to `FALSE`
+#' @param xgrid Turn on major x-grid-lines if `TRUE`.
+#' Default to `FALSE`.
 #' The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.
-#' @param ygrid turn on major y-grid-lines if `TRUE`
-#' Defaults to `TRUE`
+#' @param ygrid Turn on major y-grid-lines if `TRUE`.
+#' Default to `TRUE`.
 #' The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.
-#' @param axis_text_color_style define the color style for axis titles and text.
-#' If `"style"` then use a saturated palette color, use the default colors otherwise.
-#' Defaults to `"style"`
-#' @param axis_title_just axis title font justification, one of `[blmcrt]`
-#' Defaults to `"mm"`
-#' @param axis_title allow axis titles if `TRUE`
-#' Defaults to `TRUE`
-#' @param legend allow legend if `TRUE`
-#' Defaults to `FALSE`
-#' @param xticks add x-ticks if `TRUE`
-#' Defaults to `FALSE`
-#' @param yticks add y-ticks if `TRUE`
-#' Defaults to `FALSE`
+#' @param axis_text_color define the color style for axis text.
+#' If `"style"` then use a saturated palette color.
+#' Default to `"style"`.
+#' @param axis_title_color define the color style for axis title.
+#' If `"style"` then use a saturated palette color.
+#' Default to `"style"`.
+#' @param axis_title_just Axis title font justification, one of `[blmcrt]`
+#' Default to `"mm"`.
+#' @param axis_title Allow axis titles if `TRUE`.
+#' Default to `TRUE`.
+#' @param legend Allow legend if `TRUE`.
+#' Default to `FALSE`.
+#' @param xticks Add x-ticks if `TRUE`.
+#' Default to `FALSE`.
+#' @param yticks Add y-ticks if `TRUE`.
+#' Default to `FALSE`.
 #'
 #' @return ggplot theme
 #'
@@ -55,36 +58,33 @@
 #'   scale_color_tt()
 #' @export
 theme_tt <- function(style = "slide", font = NULL, palette = "green",
-                     xaxis = TRUE, yaxis = FALSE, axis_text_color_style = "style",
+                     xaxis = TRUE, yaxis = FALSE,
+                     axis_text_color = "style", axis_title_color = "style",
                      xgrid = FALSE, ygrid = TRUE, legend = FALSE,
                      axis_title = TRUE, axis_title_just = "mm",
                      xticks = FALSE, yticks = FALSE) {
   if (is.null(font)) {
     if (style == "slide") {
-      font <- "heros"
+      font <- ttr::slide_font
     } else {
-      font <- "lmroman"
+      font <- ttr::paper_font
     }
   }
 
   if (palette == "green") {
     shaded_gray <- ttcolor("gradient green")
     axis_color <- ttcolor("green")
-    if (axis_text_color_style == "style") {
-      axis_text_color <- shades::saturation(ttcolor("green"), 0.21)
-      axis_title_color <- shades::saturation(ttcolor("green"), 0.07)
-    }
+    if (axis_text_color == "style") axis_text_color <- shades::saturation(ttcolor("green"), 0.21)
+    if (axis_title_color == "style") axis_title_color <- shades::saturation(ttcolor("green"), 0.07)
   } else {
     shaded_gray <- ttcolor("gradient brown")
     axis_color <- ttcolor("brown")
-    if (axis_text_color_style == "style") {
-      axis_text_color <- shades::saturation(ttcolor("brown"), 0.21)
-      axis_title_color <- shades::saturation(ttcolor("brown"), 0.07)
-    }
+    if (axis_text_color == "style") axis_text_color <- shades::saturation(ttcolor("brown"), 0.21)
+    if (axis_title_color == "style") axis_title_color <- shades::saturation(ttcolor("brown"), 0.07)
   }
 
-  if (axis_text_color_style != "style") {
-    axis_text_color <- "grey30"
+  if (style == "paper") {
+    axis_text_color <- "black"
     axis_title_color <- "black"
   }
 
@@ -153,10 +153,10 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
 
     # Strip background (#This sets the panel background for facet-wrapped plots to white,
     # removing the standard grey ggplot background colour and sets the title size of the facet-wrap title)
-    strip.background = ggplot2::element_rect(fill = "white"),
-    strip.text = ggplot2::element_text(size = 12, hjust = 0, family = font),
+    strip.background = ggplot2::element_rect(fill = "white", color = "black"),
+    strip.text = ggplot2::element_text(size = 11, hjust = 0.5, family = font),
     strip.placement = "outside",
-    panel.spacing = grid::unit(2, "lines")
+    panel.spacing = grid::unit(-0.25, "lines")
   )
 
   if (xaxis) tttheme <- tttheme + ggplot2::theme(axis.line.x = ggplot2::element_line(color = axis_color, size = 0.21))

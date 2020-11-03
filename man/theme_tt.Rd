@@ -21,50 +21,50 @@ theme_tt(
 )
 }
 \arguments{
-\item{style}{Change the font family.
-Defaults to \code{"slide"} for TeX Gyre Heros (if \code{font} is \verb{NULL) Change to }"paper"\verb{for Latin Modern Roman (if}font\code{is}NULL)}
+\item{style}{Change the theme style.
+Default to \code{"slide"} for TeX Gyre Heros (if \code{font} is \verb{NULL) and lighter axis title and text. Change to }"paper"\verb{for Latin Modern Roman (if}font\code{is}NULL) and darker axis title and text.}
 
 \item{font}{Change the font family.
-Defaults to \code{NULL} to use the defaults based on \code{style}.}
+Default to \code{NULL} to use the defaults based on \code{style}.}
 
-\item{palette}{Change the palette
-Defaults to \code{"green"} for green-shaded lines
-Change to \code{"brown"} for brown-shaded lines}
+\item{palette}{Change the palette.
+Default to \code{"green"} for green-shaded lines.
+Change to \code{"brown"} for brown-shaded lines.}
 
-\item{xaxis}{x-axis line if \code{TRUE}
-Defaults to \code{TRUE}
+\item{xaxis}{x-axis line if \code{TRUE}.
+Default to \code{TRUE},
 The line is colored "green" for a green palette and is colored "brown" for a brown palette.}
 
-\item{yaxis}{y-axis line if \code{TRUE}
-Defaults to \code{FALSE}
+\item{yaxis}{y-axis line if \code{TRUE}.
+Default to \code{FALSE}.
 The line is colored "green" for a green palette and is colored "brown" for a brown palette.}
 
 \item{axis_text_color_style}{define the color style for axis titles and text.
 If \code{"style"} then use a saturated palette color, use the default colors otherwise.
-Defaults to \code{"style"}}
+Default to \code{"style"}.}
 
-\item{xgrid}{turn on major x-grid-lines if \code{TRUE}
-Defaults to \code{FALSE}
+\item{xgrid}{Turn on major x-grid-lines if \code{TRUE}.
+Default to \code{FALSE}.
 The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.}
 
-\item{ygrid}{turn on major y-grid-lines if \code{TRUE}
-Defaults to \code{TRUE}
+\item{ygrid}{Turn on major y-grid-lines if \code{TRUE}.
+Default to \code{TRUE}.
 The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.}
 
-\item{legend}{allow legend if \code{TRUE}
-Defaults to \code{FALSE}}
+\item{legend}{Allow legend if \code{TRUE}.
+Default to \code{FALSE}.}
 
-\item{axis_title}{allow axis titles if \code{TRUE}
-Defaults to \code{TRUE}}
+\item{axis_title}{Allow axis titles if \code{TRUE}.
+Default to \code{TRUE}.}
 
-\item{axis_title_just}{axis title font justification, one of \verb{[blmcrt]}
-Defaults to \code{"mm"}}
+\item{axis_title_just}{Axis title font justification, one of \verb{[blmcrt]}
+Default to \code{"mm"}.}
 
-\item{xticks}{add x-ticks if \code{TRUE}
-Defaults to \code{FALSE}}
+\item{xticks}{Add x-ticks if \code{TRUE}.
+Default to \code{FALSE}.}
 
-\item{yticks}{add y-ticks if \code{TRUE}
-Defaults to \code{FALSE}}
+\item{yticks}{Add y-ticks if \code{TRUE}.
+Default to \code{FALSE}.}
 }
 \value{
 ggplot theme

@@ -9,13 +9,13 @@ ttpalette(palette = "main", reverse = FALSE, nmax = NULL, order = NULL, ...)
 \arguments{
 \item{palette}{Character name of palette. Run \code{names(ttpalettes)} for available options.}
 
-\item{reverse}{If \code{TRUE}, reverses the order of the colors in the color scale}
+\item{reverse}{If \code{TRUE}, reverses the order of the colors in the color scale.}
 
 \item{nmax}{Maximum number of different colors the palette should contain. If not provided, is calculated automatically from the data.}
 
 \item{order}{Numeric vector listing the order in which the colors should be used. Default is \code{1:nmax}.}
 
-\item{...}{Additional arguments to pass to \code{\link[grDevices:colorRamp]{grDevices::colorRampPalette()}}}
+\item{...}{Additional arguments to pass to \code{\link[grDevices:colorRamp]{grDevices::colorRampPalette()}}.}
 }
 \value{
 Color palette function(n)
