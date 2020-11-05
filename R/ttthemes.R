@@ -34,6 +34,8 @@
 #' Default to `TRUE`.
 #' @param legend Allow legend if `TRUE`.
 #' Default to `FALSE`.
+#' @param legend_title Allow legend title if `TRUE`.
+#' Default to `FALSE`.
 #' @param xticks Add x-ticks if `TRUE`.
 #' Default to `FALSE`.
 #' @param yticks Add y-ticks if `TRUE`.
@@ -61,6 +63,7 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
                      xaxis = TRUE, yaxis = FALSE,
                      axis_text_color = "style", axis_title_color = "style",
                      xgrid = FALSE, ygrid = TRUE, legend = FALSE,
+                     legend_title = FALSE,
                      axis_title = TRUE, axis_title_just = "mm",
                      xticks = FALSE, yticks = FALSE) {
   if (is.null(font)) {
@@ -182,6 +185,13 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
   if (yticks) {
     tttheme <- tttheme + ggplot2::theme(axis.ticks.y = ggplot2::element_line(color = axis_title_color, size = 0.15))
     tttheme <- tttheme + ggplot2::theme(axis.ticks.length = grid::unit(5, "pt"))
+  }
+  if (legend_title) {
+    tttheme <- tttheme + ggplot2::theme(legend.title = ggplot2::element_text(
+      family = font,
+      size = 11,
+      hjust = 0.5
+    ))
   }
 
   tttheme

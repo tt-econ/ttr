@@ -10,10 +10,12 @@ theme_tt(
   palette = "green",
   xaxis = TRUE,
   yaxis = FALSE,
-  axis_text_color_style = "style",
+  axis_text_color = "style",
+  axis_title_color = "style",
   xgrid = FALSE,
   ygrid = TRUE,
   legend = FALSE,
+  legend_title = FALSE,
   axis_title = TRUE,
   axis_title_just = "mm",
   xticks = FALSE,
@@ -22,7 +24,7 @@ theme_tt(
 }
 \arguments{
 \item{style}{Change the theme style.
-Default to \code{"slide"} for TeX Gyre Heros (if \code{font} is \verb{NULL) and lighter axis title and text. Change to }"paper"\verb{for Latin Modern Roman (if}font\code{is}NULL) and darker axis title and text.}
+Default to \code{"slide"} for TeX Gyre Heros (if \code{font} is \verb{NULL) and themed axis title and text. Change to }"paper"\verb{for Latin Modern Roman (if}font\code{is}NULL) and black axis title and text.}
 
 \item{font}{Change the font family.
 Default to \code{NULL} to use the defaults based on \code{style}.}
@@ -39,8 +41,12 @@ The line is colored "green" for a green palette and is colored "brown" for a bro
 Default to \code{FALSE}.
 The line is colored "green" for a green palette and is colored "brown" for a brown palette.}
 
-\item{axis_text_color_style}{define the color style for axis titles and text.
-If \code{"style"} then use a saturated palette color, use the default colors otherwise.
+\item{axis_text_color}{define the color style for axis text.
+If \code{"style"} then use a saturated palette color.
+Default to \code{"style"}.}
+
+\item{axis_title_color}{define the color style for axis title.
+If \code{"style"} then use a saturated palette color.
 Default to \code{"style"}.}
 
 \item{xgrid}{Turn on major x-grid-lines if \code{TRUE}.
@@ -52,6 +58,9 @@ Default to \code{TRUE}.
 The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.}
 
 \item{legend}{Allow legend if \code{TRUE}.
+Default to \code{FALSE}.}
+
+\item{legend_title}{Allow legend title if \code{TRUE}.
 Default to \code{FALSE}.}
 
 \item{axis_title}{Allow axis titles if \code{TRUE}.
