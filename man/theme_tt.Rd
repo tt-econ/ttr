@@ -6,14 +6,18 @@
 \usage{
 theme_tt(
   style = "slide",
-  font = NULL,
   palette = "green",
+  font = NULL,
+  title_font = NULL,
+  subtitle_font = NULL,
   xaxis = TRUE,
   yaxis = FALSE,
   axis_text_color = "style",
   axis_title_color = "style",
   xgrid = FALSE,
   ygrid = TRUE,
+  xgrid_minor = FALSE,
+  ygrid_minor = FALSE,
   legend = FALSE,
   legend_title = FALSE,
   axis_title = TRUE,
@@ -24,14 +28,21 @@ theme_tt(
 }
 \arguments{
 \item{style}{Change the theme style.
-Default to \code{"slide"} for TeX Gyre Heros (if \code{font} is \verb{NULL) and themed axis title and text. Change to }"paper"\verb{for Latin Modern Roman (if}font\code{is}NULL) and black axis title and text.}
-
-\item{font}{Change the font family.
-Default to \code{NULL} to use the defaults based on \code{style}.}
+Default to \code{"slide"} for default slide fonts and themed axis title and text.
+Change to \code{"paper"} for default paper fonts and black axis title and text.}
 
 \item{palette}{Change the palette.
 Default to \code{"green"} for green-shaded lines.
 Change to \code{"brown"} for brown-shaded lines.}
+
+\item{font}{Change the general font family.
+Default to \code{NULL} to use the defaults based on \code{style}.}
+
+\item{title_font}{Change the title font family.
+Default to \code{NULL} to use the defaults based on \code{style}.}
+
+\item{subtitle_font}{Change the subtitle font family.
+Default to \code{NULL} to use the defaults based on \code{style}.}
 
 \item{xaxis}{x-axis line if \code{TRUE}.
 Default to \code{TRUE},
@@ -55,6 +66,14 @@ The line is colored "gradient green" for a green palette and is colored "gradien
 
 \item{ygrid}{Turn on major y-grid-lines if \code{TRUE}.
 Default to \code{TRUE}.
+The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.}
+
+\item{xgrid_minor}{Turn on minor x-grid-lines if \code{TRUE}.
+Default to \code{FALSE}.
+The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.}
+
+\item{ygrid_minor}{Turn on minor y-grid-lines if \code{TRUE}.
+Default to \code{FALSE}.
 The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.}
 
 \item{legend}{Allow legend if \code{TRUE}.
@@ -84,14 +103,14 @@ Theme for ttecon figures.
 \examples{
 library(ggplot2)
 
-ggplot(mtcars, aes(x = mpg * 0.43, y = wt * 0.4535924, colour = factor(cyl))) +
+ggplot(mtcars, aes(x = mpg * 0.43, y = wt * 0.4535924, color = factor(cyl))) +
   geom_point(size = 2) +
   labs(
     title = "Car weight vs efficiency",
     subtitle = "Using sensible metrics",
     x = "Efficiency (km/l)",
     y = "Weight (1000 kg)",
-    colour = "Cylinders",
+    color = "Cylinders",
     caption = "Brought to you by the letter 'T'"
   ) +
   theme_tt(style = "paper") +

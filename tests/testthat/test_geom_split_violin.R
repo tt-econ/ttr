@@ -12,7 +12,7 @@ my_data <- data.frame(
 test_that("normal", {
   plot <- ggplot(my_data, aes(x, y, fill = m)) +
     geom_split_violin() +
-    theme_minimal(base_family = "heros")
+    theme_minimal(base_family = "tgheros")
   vdiffr::expect_doppelganger("rplots", plot)
 })
 
@@ -20,7 +20,7 @@ test_that("title", {
   normal_title <- ggplot(my_data, aes(x, y, fill = m)) +
     labs(title = "graph of split plot") +
     geom_split_violin() +
-    theme_minimal(base_family = "heros")
+    theme_minimal(base_family = "tgheros")
   vdiffr::expect_doppelganger("normal_title", normal_title)
 })
 
@@ -28,7 +28,7 @@ test_that("color", {
   normal_color <- ggplot(my_data, aes(x, y, fill = m)) +
     scale_fill_brewer(palette = "Greens") +
     geom_split_violin() +
-    theme_minimal(base_family = "heros")
+    theme_minimal(base_family = "tgheros")
   vdiffr::expect_doppelganger("normal_color", normal_color)
 })
 
@@ -36,7 +36,7 @@ test_that("axis", {
   normal_axis <- ggplot(my_data, aes(x, y, fill = m)) +
     labs(x = "New X", y = "New Y") +
     geom_split_violin() +
-    theme_minimal(base_family = "heros")
+    theme_minimal(base_family = "tgheros")
   vdiffr::expect_doppelganger("normal_axis", normal_axis)
 })
 
@@ -44,6 +44,6 @@ test_that("legend", {
   normal_legend <- ggplot(my_data, aes(x, y, fill = m)) +
     geom_split_violin() +
     scale_fill_discrete(name = "Title", labels = c("A", "B")) +
-    theme_minimal(base_family = "heros")
+    theme_minimal(base_family = "tgheros")
   vdiffr::expect_doppelganger("normal_legend", normal_legend)
 })

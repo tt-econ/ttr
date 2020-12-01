@@ -3,13 +3,17 @@
 #' Theme for ttecon figures.
 #'
 #' @param style Change the theme style.
-#' Default to `"slide"` for TeX Gyre Heros (if `font` is `NULL) and themed axis title and text.
-#' Change to `"paper"` for Latin Modern Roman (if `font` is `NULL) and black axis title and text.
-#' @param font Change the font family.
-#' Default to `NULL` to use the defaults based on `style`.
+#' Default to `"slide"` for default slide fonts and themed axis title and text.
+#' Change to `"paper"` for default paper fonts and black axis title and text.
 #' @param palette Change the palette.
 #' Default to `"green"` for green-shaded lines.
 #' Change to `"brown"` for brown-shaded lines.
+#' @param font Change the general font family.
+#' Default to `NULL` to use the defaults based on `style`.
+#' @param title_font Change the title font family.
+#' Default to `NULL` to use the defaults based on `style`.
+#' @param subtitle_font Change the subtitle font family.
+#' Default to `NULL` to use the defaults based on `style`.
 #' @param xaxis x-axis line if `TRUE`.
 #' Default to `TRUE`,
 #' The line is colored "green" for a green palette and is colored "brown" for a brown palette.
@@ -21,6 +25,12 @@
 #' The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.
 #' @param ygrid Turn on major y-grid-lines if `TRUE`.
 #' Default to `TRUE`.
+#' The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.
+#' @param xgrid_minor Turn on minor x-grid-lines if `TRUE`.
+#' Default to `FALSE`.
+#' The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.
+#' @param ygrid_minor Turn on minor y-grid-lines if `TRUE`.
+#' Default to `FALSE`.
 #' The line is colored "gradient green" for a green palette and is colored "gradient brown" for a brown palette.
 #' @param axis_text_color define the color style for axis text.
 #' If `"style"` then use a saturated palette color.
@@ -46,31 +56,51 @@
 #' @examples
 #' library(ggplot2)
 #'
-#' ggplot(mtcars, aes(x = mpg * 0.43, y = wt * 0.4535924, colour = factor(cyl))) +
+#' ggplot(mtcars, aes(x = mpg * 0.43, y = wt * 0.4535924, color = factor(cyl))) +
 #'   geom_point(size = 2) +
 #'   labs(
 #'     title = "Car weight vs efficiency",
 #'     subtitle = "Using sensible metrics",
 #'     x = "Efficiency (km/l)",
 #'     y = "Weight (1000 kg)",
-#'     colour = "Cylinders",
+#'     color = "Cylinders",
 #'     caption = "Brought to you by the letter 'T'"
 #'   ) +
 #'   theme_tt(style = "paper") +
 #'   scale_color_tt()
 #' @export
-theme_tt <- function(style = "slide", font = NULL, palette = "green",
+theme_tt <- function(style = "slide", palette = "green",
+                     font = NULL, title_font = NULL, subtitle_font = NULL,
                      xaxis = TRUE, yaxis = FALSE,
                      axis_text_color = "style", axis_title_color = "style",
-                     xgrid = FALSE, ygrid = TRUE, legend = FALSE,
-                     legend_title = FALSE,
+                     xgrid = FALSE, ygrid = TRUE,
+                     xgrid_minor = FALSE, ygrid_minor = FALSE,
+                     legend = FALSE, legend_title = FALSE,
                      axis_title = TRUE, axis_title_just = "mm",
                      xticks = FALSE, yticks = FALSE) {
   if (is.null(font)) {
     if (style == "slide") {
-      font <- ttr::slide_font
+      font <- "source-sans-pro"
     } else {
-      font <- ttr::paper_font
+      font <- "lmroman"
+    }
+  }
+
+  if (is.null(title_font)) {
+    if (style == "slide") {
+      title_font <- "alegreya-sans"
+      title_face <- "bold"
+    } else {
+      title_font <- "lmroman"
+      title_face <- "bold"
+    }
+  }
+
+  if (is.null(subtitle_font)) {
+    if (style == "slide") {
+      subtitle_font <- "alegreya-sans"
+    } else {
+      subtitle_font <- "lmroman"
     }
   }
 
@@ -94,16 +124,15 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
   tttheme <- ggplot2::theme(
 
     # Text format:
-    # This sets the font, size, type and colour of text for the chart's title
+    # This sets the font, size, type and color of text for the chart's title
     plot.title = ggplot2::element_text(
-      family = font,
+      family = title_font, face = title_face,
       size = 14,
-      face = "bold",
       color = "#000000"
     ),
-    # This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
+    # This sets the font, size, type and color of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
     plot.subtitle = ggplot2::element_text(
-      family = font,
+      family = subtitle_font, face = "plain",
       size = 13,
       margin = ggplot2::margin(5, 0, 5, 0)
     ),
@@ -130,7 +159,7 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
     ),
 
     # Axis format
-    # This sets the text font, size and colour for the axis test,
+    # This sets the text font, size and color for the axis test,
     # as well as setting the margins and removes lines and ticks.
     # In some cases, axis lines and axis ticks are things we would want to have in the chart.
     axis.title = ggplot2::element_blank(),
@@ -147,15 +176,16 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
     # Grid lines
     # This removes all minor gridlines and adds major y gridlines.
     panel.grid.minor = ggplot2::element_blank(),
-    panel.grid.major.y = ggplot2::element_line(color = shaded_gray, size = 0.15),
+    panel.grid.major.y = ggplot2::element_line(color = shaded_gray, size = 0.21),
     panel.grid.major.x = ggplot2::element_blank(),
 
     # Blank background
-    # This sets the panel background as blank, removing the standard grey ggplot background colour from the plot
+    # This sets the panel background as blank, removing the border and standard grey ggplot background color from the plot
+    panel.border = ggplot2::element_blank(),
     panel.background = ggplot2::element_blank(),
 
     # Strip background (#This sets the panel background for facet-wrapped plots to white,
-    # removing the standard grey ggplot background colour and sets the title size of the facet-wrap title)
+    # removing the standard grey ggplot background color and sets the title size of the facet-wrap title)
     strip.background = ggplot2::element_rect(fill = "white", color = "black"),
     strip.text = ggplot2::element_text(size = 11, hjust = 0.5, family = font),
     strip.placement = "outside",
@@ -165,8 +195,11 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
   if (xaxis) tttheme <- tttheme + ggplot2::theme(axis.line.x = ggplot2::element_line(color = axis_color, size = 0.21))
   if (yaxis) tttheme <- tttheme + ggplot2::theme(axis.line.y = ggplot2::element_line(color = axis_color, size = 0.21))
 
-  if (xgrid) tttheme <- tttheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(color = shaded_gray, size = 0.15))
+  if (xgrid) tttheme <- tttheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(color = shaded_gray, size = 0.21))
   if (!ygrid) tttheme <- tttheme + ggplot2::theme(panel.grid.major.y = ggplot2::element_blank())
+
+  if (xgrid_minor) tttheme <- tttheme + ggplot2::theme(panel.grid.minor.x = ggplot2::element_line(color = shaded_gray, size = 0.15))
+  if (ygrid_minor) tttheme <- tttheme + ggplot2::theme(panel.grid.minor.y = ggplot2::element_line(color = shaded_gray, size = 0.15))
 
   if (!legend) tttheme <- tttheme + ggplot2::theme(legend.position = "none")
 
@@ -179,11 +212,11 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
       ggplot2::theme(axis.title.y.right = ggplot2::element_text(hjust = yj, angle = 90, face = "plain"))
   }
   if (xticks) {
-    tttheme <- tttheme + ggplot2::theme(axis.ticks.x = ggplot2::element_line(color = axis_title_color, size = 0.15))
+    tttheme <- tttheme + ggplot2::theme(axis.ticks.x = ggplot2::element_line(color = axis_title_color, size = 0.21))
     tttheme <- tttheme + ggplot2::theme(axis.ticks.length = grid::unit(5, "pt"))
   }
   if (yticks) {
-    tttheme <- tttheme + ggplot2::theme(axis.ticks.y = ggplot2::element_line(color = axis_title_color, size = 0.15))
+    tttheme <- tttheme + ggplot2::theme(axis.ticks.y = ggplot2::element_line(color = axis_title_color, size = 0.21))
     tttheme <- tttheme + ggplot2::theme(axis.ticks.length = grid::unit(5, "pt"))
   }
   if (legend_title) {
@@ -196,19 +229,3 @@ theme_tt <- function(style = "slide", font = NULL, palette = "green",
 
   tttheme
 }
-
-#' Default font for slides
-#'
-#' This font is automatically imported with `ttr`: TeX Gyre Heros
-#'
-#'
-#' @export
-slide_font <- "heros"
-
-#' Default font for papers
-#'
-#' This font is automatically imported with `ttr`: Latin Modern Roman
-#'
-#'
-#' @export
-paper_font <- "lmroman"
