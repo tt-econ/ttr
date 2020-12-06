@@ -1,6 +1,6 @@
 Package: ttr
 Title: Commonly Used R Functions for TTecon Team
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
     person(given = "Linh",
            family = "Tô",
@@ -12,13 +12,16 @@ Authors@R: c(
            email = "neil_thakral@brown.edu")
     )
 Description: R functions used by ttecon team.
-    It includes ggplot functions, custom color palettes, and others.
+    It includes fonts, ggplot functions, custom color palettes, and others.
 License: GPL-3
 Encoding: UTF-8
 Depends:
     R (>= 3.4.0)
 Imports:
+    ggforce (>= 0.3.2),
     ggplot2 (>= 3.3.0),
+    cowplot (>= 1.1.0),
+    data.table (>= 1.13.0),
     plyr,
     grDevices,
     showtext,
