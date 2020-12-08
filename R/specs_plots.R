@@ -4,8 +4,9 @@
 #'
 #' @param coef_grid A dataframe with the following components:
 #'  `index` (if part of a specification plot) or `coef_name` (if standalone),
-#'  `coef`, `error_low`, `error_high`, `p`
-#'  (character with values: `"p<0.01"`, `"p<0.05"`, `"p<0.10"`, `p>0.10"`).
+#'  `coef`, `error_low`, `error_high`, `p` for p-value categories
+#'  (character with values, default should be `"p<0.01"`, `"p<0.05"`, `"p<0.10"`, `p>0.10"`)
+#'  or `pval` for the raw numeric p-values.
 #' @param palette Change the palette.
 #' Default to `"green"` for green-shaded plot.
 #' Change to `"brown"` for brown-shaded plot.
@@ -29,8 +30,9 @@
 #'  Default to `"Coefficient estimate"'.
 #' @param hline A numeric scalar indicating a horizontal line at value `hline`.
 #'  Default to `NULL` for none.
-#' @param pcolors A named vector of colors for points by `p` value ("p<0.01", "p<0.05", "p<0.10", "p>0.10").
-#'  Default to `NULL` for default colors based on `ttr::ttcolors`.
+#' @param pcolors A named vector of colors for points by `p` value
+#'  (defaults are "p<0.01", "p<0.05", "p<0.10", "p>0.10").
+#' Default to `NULL` for default colors based on `ttr::ttcolors`.
 #' @param standalone A boolean to indicate whether this is a standalone plot or
 #'  part of a specification plot with a control grid panel.
 #'  Default to `FALSE'.
@@ -48,13 +50,20 @@ specs_coef_plot <- function(coef_grid, palette = "green", style = "slide",
   if (is.null(pcolors)) {
     pcolors <- c(
       "p<0.01" = unname(ttr::ttcolor("orange")),
-      "p<0.05" = unname(ttr::ttcolor("brown")),
-      "p<0.10" = unname(ttr::ttcolor("green")),
-      "p>0.10" = unname(ttr::ttcolor("blue")),
+      "p<0.05" = unname(ttr::ttcolor("green")),
+      "p<0.10" = unname(ttr::ttcolor("blue")),
+      "p>0.10" = unname(ttr::ttcolor("brown")),
       mygray = mygray
     )
   } else {
     pcolors["mygray"] <- mygray
+  }
+
+  if ("pval" %in% colnames(coef_grid) & (!"p" %in% colnames(coef_grid))) {
+    coef_grid$p <- "p>0.10"
+    coef_grid[coef_grid$pval <= 0.01, "p"] <- "p<0.01"
+    coef_grid[coef_grid$pval > 0.01 & coef_grid$pval <= 0.05, "p"] <- "p<0.05"
+    coef_grid[coef_grid$pval > 0.05 & coef_grid$pval <= 0.1, "p"] <- "p<0.10"
   }
 
   if (is.null(point_size)) {
@@ -92,16 +101,19 @@ specs_coef_plot <- function(coef_grid, palette = "green", style = "slide",
         )
       }
     } +
-    ggplot2::geom_point(size = point_size, alpha = 0.85, ggplot2::aes(color = coef_grid$p)) +
-    ggplot2::guides(color = F) +
     ggplot2::ylab(coef_ylabel) +
-    ggplot2::scale_color_manual(values = pcolors) +
-    ttr::theme_tt(palette = palette, style = style)
+    ttr::theme_tt(palette = palette, style = style) +
+    ggplot2::theme(axis.title.x = ggplot2::element_blank())
+
+  if ("p" %in% colnames(coef_grid)) {
+    coef_plot <- coef_plot + ggplot2::geom_point(size = point_size, alpha = 0.92, ggplot2::aes(color = coef_grid$p)) +
+      ggplot2::guides(color = F) +
+      ggplot2::scale_color_manual(values = pcolors)
+  }
 
   if (standalone == FALSE) {
     coef_plot <- coef_plot + ggplot2::theme(
       axis.text.x = ggplot2::element_blank(),
-      axis.title.x = ggplot2::element_blank()
     )
   }
 
@@ -275,7 +287,9 @@ specs_combine_plots <- function(coef_plot, control_plot, ncoefs, ratio = 2,
 #'  top panel (displaying presence of coefficients).
 #' Useful when dealing with large CIs.
 #' Default to `-1`.
-#' @return A `ggplot2` object depicting the specification plot with both coefficient and control panels
+#' @return A list of 3 `ggplot2` objects, `coef_plot` depicting the coefficient plot,
+#'  `control_plot` depicting the control panel, and `spec_plot` depicting the
+#'  specification plot with both coefficient and control panels
 #' @export
 specs_plot <- function(coefs,
                        palette = "green", style = "slide", ratio = 2,
@@ -323,5 +337,5 @@ specs_plot <- function(coefs,
     ratio = ratio,
     control_spacing = control_spacing
   )
-  return(specs_plot)
+  return(list(coef_plot = coef_plot, control_plot = control_plot, specs_plot = specs_plot))
 }

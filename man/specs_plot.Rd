@@ -83,7 +83,9 @@ Useful when dealing with large CIs.
 Default to \code{-1}.}
 }
 \value{
-A \code{ggplot2} object depicting the specification plot with both coefficient and control panels
+A list of 3 \code{ggplot2} objects, \code{coef_plot} depicting the coefficient plot,
+\code{control_plot} depicting the control panel, and \code{spec_plot} depicting the
+specification plot with both coefficient and control panels
 }
 \description{
 \code{specs_plot} produces the specification plot with 2 panels: coefficient and control grid.

@@ -80,27 +80,27 @@ theme_tt <- function(style = "slide", palette = "green",
                      xticks = FALSE, yticks = FALSE) {
   if (is.null(font)) {
     if (style == "slide") {
-      font <- "source-sans-pro"
+      font <- ttr.globals$slide_font
     } else {
-      font <- "lmroman"
+      font <- ttr.globals$paper_font
     }
   }
 
   if (is.null(title_font)) {
     if (style == "slide") {
-      title_font <- "alegreya-sans"
+      title_font <- ttr.globals$slide_title_font
       title_face <- "bold"
     } else {
-      title_font <- "lmroman"
+      title_font <- ttr.globals$paper_title_font
       title_face <- "bold"
     }
   }
 
   if (is.null(subtitle_font)) {
     if (style == "slide") {
-      subtitle_font <- "alegreya-sans"
+      subtitle_font <- ttr.globals$slide_title_font
     } else {
-      subtitle_font <- "lmroman"
+      subtitle_font <- ttr.globals$paper_title_font
     }
   }
 
@@ -228,4 +228,34 @@ theme_tt <- function(style = "slide", palette = "green",
   }
 
   tttheme
+}
+
+ttr.globals <- new.env()
+ttr.globals$slide_font <- "source-sans-pro"
+ttr.globals$paper_font <- "lmroman"
+ttr.globals$slide_title_font <- "alegreya-sans"
+ttr.globals$paper_title_font <- "lmroman"
+
+#' Function to set default fonts for `ttr::theme_tt()`
+#'
+#' Change font `type` (`"slide"`, `"paper"`, `"slide_title"`, `"paper_title"`) to `font`
+#'
+#' @param type One of `"slide"`, `"paper"`, `"slide_title"`, `"paper_title"`
+#' @param font A font name (e.g., `"source-sans-pro"`, `"alegreya-sans"`, `"lmroman"`, `"tgheros"`)
+#' @export
+#'
+set_font <- function(type = "slide", font) {
+  assign(paste0(type, "_font"), font, envir = ttr.globals)
+}
+
+#' Function to get default fonts for `ttr::theme_tt()`
+#'
+#' Return font name of font `type`
+#'
+#' @param type One of `"slide"`, `"paper"`, `"slide_title"`, `"paper_title"`
+#' @return A font name (e.g., `"source-sans-pro"`, `"alegreya-sans"`, `"lmroman"`, `"tgheros"`)
+#' @export
+#'
+get_font <- function(type = "slide") {
+  return(get(paste0(type, "_font"), envir = ttr.globals))
 }

@@ -22,8 +22,9 @@ specs_coef_plot(
 \arguments{
 \item{coef_grid}{A dataframe with the following components:
 \code{index} (if part of a specification plot) or \code{coef_name} (if standalone),
-\code{coef}, \code{error_low}, \code{error_high}, \code{p}
-(character with values: \code{"p<0.01"}, \code{"p<0.05"}, \code{"p<0.10"}, \verb{p>0.10"}).}
+\code{coef}, \code{error_low}, \code{error_high}, \code{p} for p-value categories
+(character with values, default should be \code{"p<0.01"}, \code{"p<0.05"}, \code{"p<0.10"}, \verb{p>0.10"})
+or \code{pval} for the raw numeric p-values.}
 
 \item{palette}{Change the palette.
 Default to \code{"green"} for green-shaded plot.
@@ -57,7 +58,8 @@ Default to 0 and only applicable when \code{error_geom} is set to \code{"errorba
 \item{hline}{A numeric scalar indicating a horizontal line at value \code{hline}.
 Default to \code{NULL} for none.}
 
-\item{pcolors}{A named vector of colors for points by \code{p} value ("p<0.01", "p<0.05", "p<0.10", "p>0.10").
+\item{pcolors}{A named vector of colors for points by \code{p} value
+(defaults are "p<0.01", "p<0.05", "p<0.10", "p>0.10").
 Default to \code{NULL} for default colors based on \code{ttr::ttcolors}.}
 
 \item{standalone}{A boolean to indicate whether this is a standalone plot or
