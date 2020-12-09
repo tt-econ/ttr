@@ -27,7 +27,14 @@
 #'  minimum and maximum values of the y-axis in the coefficient plot.
 #' Default to `NULL` to use `ggplot2` default.
 #' @param coef_ylabel A string specifying the y-axis label on the coefficient panel.
-#'  Default to `"Coefficient estimate"'.
+#'  Default to `"Coefficient estimate"`.
+#' @param xaxis A boolean specifying whether the xaxis line is shown.
+#'  Default to `FALSE`.
+#' @param coef_xlabel A string specifying the x-axis label on the coefficient panel.
+#'  Default to `NULL` for none.
+#' @param label_text_size A numeric scalar indicating how large the text for the
+#'  axis labels should be.
+#' Default to `NULL` for `ttr::theme_tt()` default.
 #' @param hline A numeric scalar indicating a horizontal line at value `hline`.
 #'  Default to `NULL` for none.
 #' @param pcolors A named vector of colors for points by `p` value
@@ -35,11 +42,13 @@
 #' Default to `NULL` for default colors based on `ttr::ttcolors`.
 #' @param standalone A boolean to indicate whether this is a standalone plot or
 #'  part of a specification plot with a control grid panel.
-#'  Default to `FALSE'.
+#'  Default to `FALSE`.
 #' @return A `ggplot2` object depicting the coefficient plot
 #' @export
 specs_coef_plot <- function(coef_grid, palette = "green", style = "slide",
                             coef_ylabel = "Coefficient estimate", coef_ylim = NULL,
+                            xaxis = FALSE, coef_xlabel = NULL,
+                            label_text_size = NULL,
                             point_size = NULL, error_alpha = NULL,
                             error_geom = NULL, error_width = 0,
                             hline = NULL,
@@ -59,7 +68,7 @@ specs_coef_plot <- function(coef_grid, palette = "green", style = "slide",
     pcolors["mygray"] <- mygray
   }
 
-  if ("pval" %in% colnames(coef_grid) & (!"p" %in% colnames(coef_grid))) {
+  if ("pval" %in% colnames(coef_grid) && (!"p" %in% colnames(coef_grid))) {
     coef_grid$p <- "p>0.10"
     coef_grid[coef_grid$pval <= 0.01, "p"] <- "p<0.01"
     coef_grid[coef_grid$pval > 0.01 & coef_grid$pval <= 0.05, "p"] <- "p<0.05"
@@ -68,7 +77,7 @@ specs_coef_plot <- function(coef_grid, palette = "green", style = "slide",
 
   if (is.null(point_size)) {
     if (ncoefs <= 10) point_size <- 3
-    if (ncoefs > 10 & ncoefs <= 60) point_size <- 2
+    if (ncoefs > 10 && ncoefs <= 60) point_size <- 2
     if (ncoefs > 60) point_size <- 1
   }
 
@@ -101,9 +110,26 @@ specs_coef_plot <- function(coef_grid, palette = "green", style = "slide",
         )
       }
     } +
-    ggplot2::ylab(coef_ylabel) +
-    ttr::theme_tt(palette = palette, style = style) +
-    ggplot2::theme(axis.title.x = ggplot2::element_blank())
+    ttr::theme_tt(palette = palette, style = style, xaxis = xaxis) +
+    {
+      if (grepl("^\\s*$", coef_ylabel) || is.null(coef_ylabel)) {
+        ggplot2::theme(axis.title.y = ggplot2::element_blank())
+      } else {
+        ggplot2::ylab(coef_ylabel)
+      }
+    }
+
+  if (is.null(coef_xlabel)) {
+    coef_plot <- coef_plot + ggplot2::theme(axis.title.x = ggplot2::element_blank())
+  } else {
+    coef_plot <- coef_plot + ggplot2::xlab(coef_xlabel)
+  }
+
+  if (!is.null(label_text_size)) {
+    coef_plot <- coef_plot + ggplot2::theme(
+      axis.title = ggplot2::element_text(size = label_text_size)
+    )
+  }
 
   if ("p" %in% colnames(coef_grid)) {
     coef_plot <- coef_plot + ggplot2::geom_point(size = point_size, alpha = 0.92, ggplot2::aes(color = coef_grid$p)) +
@@ -148,6 +174,8 @@ specs_coef_plot <- function(coef_grid, palette = "green", style = "slide",
 #' @param control_text_size A numeric scalar indicating how large the
 #'  control name text should be.
 #' Default to 9.
+#' @param xaxis A boolean specifying whether the xaxis line is shown.
+#'  Default to `FALSE`.
 #' @param trim_top A numeric scalar indicating how close the bottom panel
 #'  (displaying presence of controls) should be to the
 #'  top panel (displaying presence of coefficients).
@@ -159,6 +187,7 @@ specs_control_plot <- function(control_grid, palette = "green", style = "slide",
                                control_geom = "rect",
                                control_spacing = NULL,
                                control_text_size = 9,
+                               xaxis = FALSE,
                                trim_top = 0) {
   control_grid$value <- as.factor(control_grid$value)
   control_grid$key <- as.factor(control_grid$key)
@@ -174,7 +203,7 @@ specs_control_plot <- function(control_grid, palette = "green", style = "slide",
   control_plot <- ggplot2::ggplot(control_grid) +
     ggplot2::scale_fill_manual(values = c("#FFFFFF", mygray)) +
     ggplot2::guides(fill = F) +
-    ttr::theme_tt(palette = palette, style = style, ygrid = FALSE) +
+    ttr::theme_tt(palette = palette, style = style, ygrid = FALSE, xaxis = xaxis) +
     ggplot2::theme(
       plot.margin = grid::unit(c(-trim_top, 0, 0, 0), "lines"),
       axis.text.x = ggplot2::element_blank(),
@@ -267,7 +296,14 @@ specs_combine_plots <- function(coef_plot, control_plot, ncoefs, ratio = 2,
 #'  minimum and maximum values of the y-axis in the coefficient plot.
 #' Default to `NULL` to use `ggplot2` default.
 #' @param coef_ylabel A string specifying the y-axis label on the coefficient panel.
-#'  Default to `"Coefficient estimate"'.
+#'  Default to `"Coefficient estimate"`.
+#' @param xaxis A boolean specifying whether the xaxis line is shown.
+#'  Default to `FALSE`.
+#' @param coef_xlabel A string specifying the x-axis label on the coefficient panel.
+#'  Default to `NULL` for none.
+#' @param label_text_size A numeric scalar indicating how large the text for the
+#'  axis labels should be.
+#' Default to `NULL` for `ttr::theme_tt()` default.
 #' @param hline A numeric scalar indicating a horizontal line at value `hline`.
 #'  Default to `NULL` for none.
 #' @param control_geom A string indicating the geom that should be used to
@@ -294,6 +330,8 @@ specs_combine_plots <- function(coef_plot, control_plot, ncoefs, ratio = 2,
 specs_plot <- function(coefs,
                        palette = "green", style = "slide", ratio = 2,
                        coef_ylabel = "Coefficient estimate", coef_ylim = NULL,
+                       xaxis = FALSE, coef_xlabel = NULL,
+                       label_text_size = NULL,
                        point_size = NULL, error_alpha = NULL,
                        error_geom = NULL, error_width = 0,
                        hline = NULL,
@@ -321,6 +359,8 @@ specs_plot <- function(coefs,
   coef_plot <- ttr::specs_coef_plot(coef_grid,
     palette = palette, style = style,
     coef_ylabel = coef_ylabel, coef_ylim = coef_ylim,
+    xaxis = xaxis, coef_xlabel = coef_xlabel,
+    label_text_size = label_text_size,
     point_size = point_size, error_alpha = error_alpha,
     error_geom = error_geom, error_width = error_width,
     hline = hline,
@@ -331,6 +371,7 @@ specs_plot <- function(coefs,
     control_geom = control_geom,
     control_spacing = control_spacing,
     control_text_size = control_text_size,
+    xaxis = xaxis,
     trim_top = trim_top
   )
   specs_plot <- specs_combine_plots(coef_plot, control_plot, nrow(coef_grid),

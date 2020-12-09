@@ -11,6 +11,9 @@ specs_plot(
   ratio = 2,
   coef_ylabel = "Coefficient estimate",
   coef_ylim = NULL,
+  xaxis = FALSE,
+  coef_xlabel = NULL,
+  label_text_size = NULL,
   point_size = NULL,
   error_alpha = NULL,
   error_geom = NULL,
@@ -38,11 +41,21 @@ Change to \code{"paper"} for default paper fonts and black axis title and text.}
 coefficient plot relative to the control grid plot.}
 
 \item{coef_ylabel}{A string specifying the y-axis label on the coefficient panel.
-Default to `"Coefficient estimate"'.}
+Default to \code{"Coefficient estimate"}.}
 
 \item{coef_ylim}{A numeric vector of length two indicating the
 minimum and maximum values of the y-axis in the coefficient plot.
 Default to \code{NULL} to use \code{ggplot2} default.}
+
+\item{xaxis}{A boolean specifying whether the xaxis line is shown.
+Default to \code{FALSE}.}
+
+\item{coef_xlabel}{A string specifying the x-axis label on the coefficient panel.
+Default to \code{NULL} for none.}
+
+\item{label_text_size}{A numeric scalar indicating how large the text for the
+axis labels should be.
+Default to \code{NULL} for \code{ttr::theme_tt()} default.}
 
 \item{point_size}{A numeric scalar indicating the size of the coefficient estimate points.
 Default to \code{NULL} and set according to the number of specs.}

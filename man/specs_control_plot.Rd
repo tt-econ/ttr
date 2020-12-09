@@ -11,6 +11,7 @@ specs_control_plot(
   control_geom = "rect",
   control_spacing = NULL,
   control_text_size = 9,
+  xaxis = FALSE,
   trim_top = 0
 )
 }
@@ -39,6 +40,9 @@ Default to \code{NULL} and set to \code{0.75} if fewer than 40 specs and \code{1
 \item{control_text_size}{A numeric scalar indicating how large the
 control name text should be.
 Default to 9.}
+
+\item{xaxis}{A boolean specifying whether the xaxis line is shown.
+Default to \code{FALSE}.}
 
 \item{trim_top}{A numeric scalar indicating how close the bottom panel
 (displaying presence of controls) should be to the
