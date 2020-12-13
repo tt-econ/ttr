@@ -7,11 +7,9 @@
 specs_plot(
   coefs,
   palette = "green",
-  style = "slide",
   ratio = 2,
   coef_ylabel = "Coefficient estimate",
   coef_ylim = NULL,
-  xaxis = FALSE,
   coef_xlabel = NULL,
   label_text_size = NULL,
   point_size = NULL,
@@ -22,7 +20,8 @@ specs_plot(
   control_geom = "rect",
   control_spacing = NULL,
   control_text_size = 9,
-  trim_top = 0
+  trim_top = 0,
+  ...
 )
 }
 \arguments{
@@ -33,10 +32,6 @@ names of indicators for specs, \code{coef}, \code{error_low}, \code{error_high},
 Default to \code{"green"} for green-shaded plot.
 Change to \code{"brown"} for brown-shaded plot.}
 
-\item{style}{Change the theme style.
-Default to \code{"slide"} for default slide fonts and themed axis title and text.
-Change to \code{"paper"} for default paper fonts and black axis title and text.}
-
 \item{ratio}{A numeric scalar indicating the height ratio of the
 coefficient plot relative to the control grid plot.}
 
@@ -46,9 +41,6 @@ Default to \code{"Coefficient estimate"}.}
 \item{coef_ylim}{A numeric vector of length two indicating the
 minimum and maximum values of the y-axis in the coefficient plot.
 Default to \code{NULL} to use \code{ggplot2} default.}
-
-\item{xaxis}{A boolean specifying whether the xaxis line is shown.
-Default to \code{FALSE}.}
 
 \item{coef_xlabel}{A string specifying the x-axis label on the coefficient panel.
 Default to \code{NULL} for none.}
@@ -94,6 +86,8 @@ Default to 9.}
 top panel (displaying presence of coefficients).
 Useful when dealing with large CIs.
 Default to \code{-1}.}
+
+\item{...}{Other arguments passed to \code{ttr::theme_tt()}}
 }
 \value{
 A list of 3 \code{ggplot2} objects, \code{coef_plot} depicting the coefficient plot,

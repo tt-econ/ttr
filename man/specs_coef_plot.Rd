@@ -7,10 +7,8 @@
 specs_coef_plot(
   coef_grid,
   palette = "green",
-  style = "slide",
   coef_ylabel = "Coefficient estimate",
   coef_ylim = NULL,
-  xaxis = FALSE,
   coef_xlabel = NULL,
   label_text_size = NULL,
   point_size = NULL,
@@ -19,7 +17,8 @@ specs_coef_plot(
   error_width = 0,
   hline = NULL,
   pcolors = NULL,
-  standalone = FALSE
+  standalone = FALSE,
+  ...
 )
 }
 \arguments{
@@ -33,19 +32,12 @@ or \code{pval} for the raw numeric p-values.}
 Default to \code{"green"} for green-shaded plot.
 Change to \code{"brown"} for brown-shaded plot.}
 
-\item{style}{Change the theme style.
-Default to \code{"slide"} for default slide fonts and themed axis title and text.
-Change to \code{"paper"} for default paper fonts and black axis title and text.}
-
 \item{coef_ylabel}{A string specifying the y-axis label on the coefficient panel.
 Default to \code{"Coefficient estimate"}.}
 
 \item{coef_ylim}{A numeric vector of length two indicating the
 minimum and maximum values of the y-axis in the coefficient plot.
 Default to \code{NULL} to use \code{ggplot2} default.}
-
-\item{xaxis}{A boolean specifying whether the xaxis line is shown.
-Default to \code{FALSE}.}
 
 \item{coef_xlabel}{A string specifying the x-axis label on the coefficient panel.
 Default to \code{NULL} for none.}
@@ -78,6 +70,8 @@ Default to \code{NULL} for default colors based on \code{ttr::ttcolors}.}
 \item{standalone}{A boolean to indicate whether this is a standalone plot or
 part of a specification plot with a control grid panel.
 Default to \code{FALSE}.}
+
+\item{...}{Other arguments passed to \code{ttr::theme_tt()}}
 }
 \value{
 A \code{ggplot2} object depicting the coefficient plot

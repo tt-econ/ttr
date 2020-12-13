@@ -7,12 +7,11 @@
 specs_control_plot(
   control_grid,
   palette = "green",
-  style = "slide",
   control_geom = "rect",
   control_spacing = NULL,
   control_text_size = 9,
-  xaxis = FALSE,
-  trim_top = 0
+  trim_top = 0,
+  ...
 )
 }
 \arguments{
@@ -21,10 +20,6 @@ specs_control_plot(
 \item{palette}{Change the palette.
 Default to \code{"green"} for green-shaded plot.
 Change to \code{"brown"} for brown-shaded plot.}
-
-\item{style}{Change the theme style.
-Default to \code{"slide"} for default slide fonts and themed axis title and text.
-Change to \code{"paper"} for default paper fonts and black axis title and text.}
 
 \item{control_geom}{A string indicating the geom that should be used to
 indicate the presence of controls.
@@ -41,14 +36,13 @@ Default to \code{NULL} and set to \code{0.75} if fewer than 40 specs and \code{1
 control name text should be.
 Default to 9.}
 
-\item{xaxis}{A boolean specifying whether the xaxis line is shown.
-Default to \code{FALSE}.}
-
 \item{trim_top}{A numeric scalar indicating how close the bottom panel
 (displaying presence of controls) should be to the
 top panel (displaying presence of coefficients).
 Useful when dealing with large CIs.
 Default to \code{0}.}
+
+\item{...}{Other arguments passed to \code{ttr::theme_tt()}}
 }
 \value{
 A \code{ggplot2} object depicting the control grid plot
