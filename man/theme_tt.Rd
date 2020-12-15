@@ -23,7 +23,8 @@ theme_tt(
   axis_title = TRUE,
   axis_title_just = "mm",
   xticks = FALSE,
-  yticks = FALSE
+  yticks = FALSE,
+  half = FALSE
 )
 }
 \arguments{
@@ -92,6 +93,9 @@ Default to \code{"mm"}.}
 Default to \code{FALSE}.}
 
 \item{yticks}{Add y-ticks if \code{TRUE}.
+Default to \code{FALSE}.}
+
+\item{half}{Make everything larger when a figure will be printed as half-size.
 Default to \code{FALSE}.}
 }
 \value{

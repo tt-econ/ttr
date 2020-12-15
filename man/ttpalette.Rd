@@ -15,7 +15,7 @@ ttpalette(palette = "main", reverse = FALSE, nmax = NULL, order = NULL, ...)
 
 \item{order}{Numeric vector listing the order in which the colors should be used. Default is \code{1:nmax}.}
 
-\item{...}{Additional arguments to pass to \code{\link[grDevices:colorRampPalette]{grDevices::colorRampPalette()}}.}
+\item{...}{Additional arguments to pass to \code{\link[grDevices:colorRamp]{grDevices::colorRampPalette()}}.}
 }
 \value{
 Color palette function(n)

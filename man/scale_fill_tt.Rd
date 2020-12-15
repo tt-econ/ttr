@@ -28,7 +28,7 @@ scale_fill_tt(
 \item{order}{Numeric vector listing the order in which the colors should be used. Default is \code{1:nmax}.}
 
 \item{...}{Additional arguments passed to \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}} or
-\code{\link[ggplot2:scale_color_gradientn]{ggplot2::scale_color_gradientn()}}, used respectively when discrete is \code{TRUE} or \code{FALSE}.}
+\code{\link[ggplot2:scale_gradient]{ggplot2::scale_color_gradientn()}}, used respectively when discrete is \code{TRUE} or \code{FALSE}.}
 }
 \description{
 To be used in a ggplot, with option \code{discrete} set to \code{TRUE} for discrete values.

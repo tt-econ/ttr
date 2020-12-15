@@ -50,6 +50,8 @@
 #' Default to `FALSE`.
 #' @param yticks Add y-ticks if `TRUE`.
 #' Default to `FALSE`.
+#' @param half Make everything larger when a figure will be printed as half-size.
+#' Default to `FALSE`.
 #'
 #' @return ggplot theme
 #'
@@ -77,7 +79,8 @@ theme_tt <- function(style = "slide", palette = "green",
                      xgrid_minor = FALSE, ygrid_minor = FALSE,
                      legend = FALSE, legend_title = FALSE,
                      axis_title = TRUE, axis_title_just = "mm",
-                     xticks = FALSE, yticks = FALSE) {
+                     xticks = FALSE, yticks = FALSE,
+                     half = FALSE) {
   if (is.null(font)) {
     if (style == "slide") {
       font <- ttr.globals$slide_font
@@ -121,23 +124,47 @@ theme_tt <- function(style = "slide", palette = "green",
     axis_title_color <- "black"
   }
 
+  if (!half) {
+    title_size <- 14
+    subtitle_size <- 13
+    caption_size <- 10
+    legend_size <- 11
+    legend_title_size <- 11
+    strip_size <- 11
+    axis_title_size <- 11
+    axis_text_size <- 12
+    thick_line <- 0.21
+    thin_line <- 0.15
+  } else {
+    title_size <- 17
+    subtitle_size <- 16
+    caption_size <- 13
+    legend_size <- 14
+    legend_title_size <- 14
+    strip_size <- 14
+    axis_title_size <- 14
+    axis_text_size <- 15
+    thick_line <- 0.42
+    thin_line <- 0.3
+  }
+
   tttheme <- ggplot2::theme(
 
     # Text format:
     # This sets the font, size, type and color of text for the chart's title
     plot.title = ggplot2::element_text(
       family = title_font, face = title_face,
-      size = 14,
+      size = title_size,
       color = "#000000"
     ),
     # This sets the font, size, type and color of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
     plot.subtitle = ggplot2::element_text(
       family = subtitle_font, face = "plain",
-      size = 13,
+      size = subtitle_size,
       margin = ggplot2::margin(5, 0, 5, 0)
     ),
     plot.caption = ggplot2::element_text(
-      hjust = 1, size = 10,
+      hjust = 1, size = caption_size,
       margin = ggplot2::margin(t = 10),
       family = font, face = "italic"
     ),
@@ -154,7 +181,7 @@ theme_tt <- function(style = "slide", palette = "green",
     legend.key = ggplot2::element_blank(),
     legend.text = ggplot2::element_text(
       family = font,
-      size = 11,
+      size = legend_size,
       color = "#000000"
     ),
 
@@ -165,7 +192,7 @@ theme_tt <- function(style = "slide", palette = "green",
     axis.title = ggplot2::element_blank(),
     axis.text = ggplot2::element_text(
       family = font,
-      size = 12,
+      size = axis_text_size,
       color = axis_text_color
     ),
     axis.text.x = ggplot2::element_text(margin = ggplot2::margin(t = 0)),
@@ -176,7 +203,7 @@ theme_tt <- function(style = "slide", palette = "green",
     # Grid lines
     # This removes all minor gridlines and adds major y gridlines.
     panel.grid.minor = ggplot2::element_blank(),
-    panel.grid.major.y = ggplot2::element_line(color = shaded_gray, size = 0.21),
+    panel.grid.major.y = ggplot2::element_line(color = shaded_gray, size = thick_line),
     panel.grid.major.x = ggplot2::element_blank(),
 
     # Blank background
@@ -187,42 +214,42 @@ theme_tt <- function(style = "slide", palette = "green",
     # Strip background (#This sets the panel background for facet-wrapped plots to white,
     # removing the standard grey ggplot background color and sets the title size of the facet-wrap title)
     strip.background = ggplot2::element_rect(fill = "white", color = "black"),
-    strip.text = ggplot2::element_text(size = 11, hjust = 0.5, family = font),
+    strip.text = ggplot2::element_text(size = strip_size, hjust = 0.5, family = font),
     strip.placement = "outside",
     panel.spacing = grid::unit(-0.25, "lines")
   )
 
-  if (xaxis) tttheme <- tttheme + ggplot2::theme(axis.line.x = ggplot2::element_line(color = axis_color, size = 0.21))
-  if (yaxis) tttheme <- tttheme + ggplot2::theme(axis.line.y = ggplot2::element_line(color = axis_color, size = 0.21))
+  if (xaxis) tttheme <- tttheme + ggplot2::theme(axis.line.x = ggplot2::element_line(color = axis_color, size = thick_line))
+  if (yaxis) tttheme <- tttheme + ggplot2::theme(axis.line.y = ggplot2::element_line(color = axis_color, size = thick_line))
 
-  if (xgrid) tttheme <- tttheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(color = shaded_gray, size = 0.21))
+  if (xgrid) tttheme <- tttheme + ggplot2::theme(panel.grid.major.x = ggplot2::element_line(color = shaded_gray, size = thick_line))
   if (!ygrid) tttheme <- tttheme + ggplot2::theme(panel.grid.major.y = ggplot2::element_blank())
 
-  if (xgrid_minor) tttheme <- tttheme + ggplot2::theme(panel.grid.minor.x = ggplot2::element_line(color = shaded_gray, size = 0.15))
-  if (ygrid_minor) tttheme <- tttheme + ggplot2::theme(panel.grid.minor.y = ggplot2::element_line(color = shaded_gray, size = 0.15))
+  if (xgrid_minor) tttheme <- tttheme + ggplot2::theme(panel.grid.minor.x = ggplot2::element_line(color = shaded_gray, size = thin_line))
+  if (ygrid_minor) tttheme <- tttheme + ggplot2::theme(panel.grid.minor.y = ggplot2::element_line(color = shaded_gray, size = thin_line))
 
   if (!legend) tttheme <- tttheme + ggplot2::theme(legend.position = "none")
 
   xj <- switch(tolower(substr(axis_title_just, 1, 1)), b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1)
   yj <- switch(tolower(substr(axis_title_just, 2, 2)), b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1)
   if (axis_title) {
-    tttheme <- tttheme + ggplot2::theme(axis.title = ggplot2::element_text(size = 11, family = font, color = axis_title_color)) +
+    tttheme <- tttheme + ggplot2::theme(axis.title = ggplot2::element_text(size = axis_title_size, family = font, color = axis_title_color)) +
       ggplot2::theme(axis.title.x = ggplot2::element_text(hjust = xj, face = "plain")) +
       ggplot2::theme(axis.title.y = ggplot2::element_text(hjust = yj, face = "plain")) +
       ggplot2::theme(axis.title.y.right = ggplot2::element_text(hjust = yj, angle = 90, face = "plain"))
   }
   if (xticks) {
-    tttheme <- tttheme + ggplot2::theme(axis.ticks.x = ggplot2::element_line(color = axis_title_color, size = 0.21))
+    tttheme <- tttheme + ggplot2::theme(axis.ticks.x = ggplot2::element_line(color = axis_title_color, size = thick_line))
     tttheme <- tttheme + ggplot2::theme(axis.ticks.length = grid::unit(5, "pt"))
   }
   if (yticks) {
-    tttheme <- tttheme + ggplot2::theme(axis.ticks.y = ggplot2::element_line(color = axis_title_color, size = 0.21))
+    tttheme <- tttheme + ggplot2::theme(axis.ticks.y = ggplot2::element_line(color = axis_title_color, size = thick_line))
     tttheme <- tttheme + ggplot2::theme(axis.ticks.length = grid::unit(5, "pt"))
   }
   if (legend_title) {
     tttheme <- tttheme + ggplot2::theme(legend.title = ggplot2::element_text(
       family = font,
-      size = 11,
+      size = legend_title_size,
       hjust = 0.5
     ))
   }
