@@ -24,7 +24,17 @@ theme_tt(
   axis_title_just = "mm",
   xticks = FALSE,
   yticks = FALSE,
-  half = FALSE
+  title_size = NULL,
+  subtitle_size = NULL,
+  caption_size = NULL,
+  legend_size = NULL,
+  legend_title_size = NULL,
+  strip_size = NULL,
+  axis_title_size = NULL,
+  axis_text_size = NULL,
+  thick_line = NULL,
+  thin_line = NULL,
+  font_scale = "normal"
 )
 }
 \arguments{
@@ -95,8 +105,39 @@ Default to \code{FALSE}.}
 \item{yticks}{Add y-ticks if \code{TRUE}.
 Default to \code{FALSE}.}
 
-\item{half}{Make everything larger when a figure will be printed as half-size.
-Default to \code{FALSE}.}
+\item{title_size}{Change title font size.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{subtitle_size}{Change subtitle font size.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{caption_size}{Change caption font size.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{legend_size}{Change legend font size.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{legend_title_size}{Change legend title font size.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{strip_size}{Change strip font size.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{axis_title_size}{Change axis title font size.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{axis_text_size}{Change axis text font size.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{thick_line}{Change default thickness of "thicker" lines.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{thin_line}{Change default thickness of "thinner" lines.
+Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+
+\item{font_scale}{Make default font sizes larger and default lines thicker if \code{"large"} or
+default font sizes smaller and default lines thinner if \code{"small"}.
+Default to \code{"normal"}.}
 }
 \value{
 ggplot theme

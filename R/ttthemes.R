@@ -50,8 +50,29 @@
 #' Default to `FALSE`.
 #' @param yticks Add y-ticks if `TRUE`.
 #' Default to `FALSE`.
-#' @param half Make everything larger when a figure will be printed as half-size.
-#' Default to `FALSE`.
+#' @param title_size Change title font size.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param subtitle_size Change subtitle font size.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param caption_size Change caption font size.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param legend_size Change legend font size.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param legend_title_size Change legend title font size.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param strip_size Change strip font size.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param axis_title_size Change axis title font size.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param axis_text_size Change axis text font size.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param thick_line Change default thickness of "thicker" lines.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param thin_line Change default thickness of "thinner" lines.
+#' Default to `NULL` to use the defaults based on `font_scale`.
+#' @param font_scale Make default font sizes larger and default lines thicker if `"large"` or
+#'  default font sizes smaller and default lines thinner if `"small"`.
+#' Default to `"normal"`.
 #'
 #' @return ggplot theme
 #'
@@ -80,7 +101,12 @@ theme_tt <- function(style = "slide", palette = "green",
                      legend = FALSE, legend_title = FALSE,
                      axis_title = TRUE, axis_title_just = "mm",
                      xticks = FALSE, yticks = FALSE,
-                     half = FALSE) {
+                     title_size = NULL, subtitle_size = NULL,
+                     caption_size = NULL, legend_size = NULL,
+                     legend_title_size = NULL, strip_size = NULL,
+                     axis_title_size = NULL, axis_text_size = NULL,
+                     thick_line = NULL, thin_line = NULL,
+                     font_scale = "normal") {
   if (is.null(font)) {
     if (style == "slide") {
       font <- ttr.globals$slide_font
@@ -124,28 +150,39 @@ theme_tt <- function(style = "slide", palette = "green",
     axis_title_color <- "black"
   }
 
-  if (!half) {
-    title_size <- 14
-    subtitle_size <- 13
-    caption_size <- 10
-    legend_size <- 11
-    legend_title_size <- 11
-    strip_size <- 11
-    axis_title_size <- 11
-    axis_text_size <- 12
-    thick_line <- 0.21
-    thin_line <- 0.15
-  } else {
-    title_size <- 17
-    subtitle_size <- 16
-    caption_size <- 13
-    legend_size <- 14
-    legend_title_size <- 14
-    strip_size <- 14
-    axis_title_size <- 14
-    axis_text_size <- 15
-    thick_line <- 0.42
-    thin_line <- 0.3
+  if (font_scale == "normal") {
+    if (is.null(title_size)) title_size <- 14
+    if (is.null(subtitle_size)) subtitle_size <- 13
+    if (is.null(caption_size)) caption_size <- 10
+    if (is.null(caption_size)) legend_size <- 11
+    if (is.null(legend_title_size)) legend_title_size <- 11
+    if (is.null(strip_size)) strip_size <- 11
+    if (is.null(axis_title_size)) axis_title_size <- 11
+    if (is.null(axis_text_size)) axis_text_size <- 12
+    if (is.null(thick_line)) thick_line <- 0.21
+    if (is.null(thin_line)) thin_line <- 0.15
+  } else if (font_scale == "large") {
+    if (is.null(title_size)) title_size <- 17
+    if (is.null(subtitle_size)) subtitle_size <- 16
+    if (is.null(caption_size)) caption_size <- 13
+    if (is.null(legend_size)) legend_size <- 14
+    if (is.null(legend_title_size)) legend_title_size <- 14
+    if (is.null(strip_size)) strip_size <- 14
+    if (is.null(axis_title_size)) axis_title_size <- 14
+    if (is.null(axis_text_size)) axis_text_size <- 15
+    if (is.null(thick_line)) thick_line <- 0.42
+    if (is.null(thin_line)) thin_line <- 0.30
+  } else if (font_scale == "small") {
+    if (is.null(title_size)) title_size <- 11
+    if (is.null(title_size)) subtitle_size <- 10
+    if (is.null(title_size)) caption_size <- 7
+    if (is.null(title_size)) legend_size <- 8
+    if (is.null(title_size)) legend_title_size <- 8
+    if (is.null(title_size)) strip_size <- 8
+    if (is.null(title_size)) axis_title_size <- 8
+    if (is.null(title_size)) axis_text_size <- 9
+    if (is.null(title_size)) thick_line <- 0.14
+    if (is.null(title_size)) thin_line <- 0.10
   }
 
   tttheme <- ggplot2::theme(
