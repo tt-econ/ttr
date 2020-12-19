@@ -51,28 +51,30 @@
 #' @param yticks Add y-ticks if `TRUE`.
 #' Default to `FALSE`.
 #' @param title_size Change title font size.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param subtitle_size Change subtitle font size.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param caption_size Change caption font size.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param legend_size Change legend font size.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param legend_title_size Change legend title font size.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param strip_size Change strip font size.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param axis_title_size Change axis title font size.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param axis_text_size Change axis text font size.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param thick_line Change default thickness of "thicker" lines.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param thin_line Change default thickness of "thinner" lines.
-#' Default to `NULL` to use the defaults based on `font_scale`.
+#' Default to `NULL` to use the default based on `font_scale`.
 #' @param font_scale Make default font sizes larger and default lines thicker if `"large"` or
 #'  default font sizes smaller and default lines thinner if `"small"`.
 #' Default to `"normal"`.
+#' @param panel_spacing Change default panel spacing in "lines" unit.
+#' Default to `NULL` to use the default of `-0.25`.
 #'
 #' @return ggplot theme
 #'
@@ -106,6 +108,7 @@ theme_tt <- function(style = "slide", palette = "green",
                      legend_title_size = NULL, strip_size = NULL,
                      axis_title_size = NULL, axis_text_size = NULL,
                      thick_line = NULL, thin_line = NULL,
+                     panel_spacing = NULL,
                      font_scale = "normal") {
   if (is.null(font)) {
     if (style == "slide") {
@@ -185,6 +188,8 @@ theme_tt <- function(style = "slide", palette = "green",
     if (is.null(title_size)) thin_line <- 0.10
   }
 
+  if (is.null(panel_spacing)) panel_spacing <- -0.25
+
   tttheme <- ggplot2::theme(
 
     # Text format:
@@ -253,7 +258,7 @@ theme_tt <- function(style = "slide", palette = "green",
     strip.background = ggplot2::element_rect(fill = "white", color = "black"),
     strip.text = ggplot2::element_text(size = strip_size, hjust = 0.5, family = font),
     strip.placement = "outside",
-    panel.spacing = grid::unit(-0.25, "lines")
+    panel.spacing = grid::unit(panel_spacing, "lines")
   )
 
   if (xaxis) tttheme <- tttheme + ggplot2::theme(axis.line.x = ggplot2::element_line(color = axis_color, size = thick_line))

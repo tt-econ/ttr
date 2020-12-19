@@ -34,6 +34,7 @@ theme_tt(
   axis_text_size = NULL,
   thick_line = NULL,
   thin_line = NULL,
+  panel_spacing = NULL,
   font_scale = "normal"
 )
 }
@@ -106,34 +107,37 @@ Default to \code{FALSE}.}
 Default to \code{FALSE}.}
 
 \item{title_size}{Change title font size.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{subtitle_size}{Change subtitle font size.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{caption_size}{Change caption font size.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{legend_size}{Change legend font size.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{legend_title_size}{Change legend title font size.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{strip_size}{Change strip font size.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{axis_title_size}{Change axis title font size.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{axis_text_size}{Change axis text font size.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{thick_line}{Change default thickness of "thicker" lines.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{thin_line}{Change default thickness of "thinner" lines.
-Default to \code{NULL} to use the defaults based on \code{font_scale}.}
+Default to \code{NULL} to use the default based on \code{font_scale}.}
+
+\item{panel_spacing}{Change default panel spacing in "lines" unit.
+Default to \code{NULL} to use the default of \code{-0.25}.}
 
 \item{font_scale}{Make default font sizes larger and default lines thicker if \code{"large"} or
 default font sizes smaller and default lines thinner if \code{"small"}.
