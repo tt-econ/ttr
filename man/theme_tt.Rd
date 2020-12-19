@@ -35,6 +35,7 @@ theme_tt(
   thick_line = NULL,
   thin_line = NULL,
   panel_spacing = NULL,
+  legend_position = "bottom",
   font_scale = "normal"
 )
 }
@@ -138,6 +139,9 @@ Default to \code{NULL} to use the default based on \code{font_scale}.}
 
 \item{panel_spacing}{Change default panel spacing in "lines" unit.
 Default to \code{NULL} to use the default of \code{-0.25}.}
+
+\item{legend_position}{Set legend position and alignment accordingly (active if \code{legend} set to \code{TRUE}).
+Default to \code{"bottom"}.}
 
 \item{font_scale}{Make default font sizes larger and default lines thicker if \code{"large"} or
 default font sizes smaller and default lines thinner if \code{"small"}.

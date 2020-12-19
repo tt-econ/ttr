@@ -75,6 +75,8 @@
 #' Default to `"normal"`.
 #' @param panel_spacing Change default panel spacing in "lines" unit.
 #' Default to `NULL` to use the default of `-0.25`.
+#' @param legend_position Set legend position and alignment accordingly (active if `legend` set to `TRUE`).
+#' Default to `"bottom"`.
 #'
 #' @return ggplot theme
 #'
@@ -108,7 +110,7 @@ theme_tt <- function(style = "slide", palette = "green",
                      legend_title_size = NULL, strip_size = NULL,
                      axis_title_size = NULL, axis_text_size = NULL,
                      thick_line = NULL, thin_line = NULL,
-                     panel_spacing = NULL,
+                     panel_spacing = NULL, legend_position = "bottom",
                      font_scale = "normal") {
   if (is.null(font)) {
     if (style == "slide") {
@@ -215,7 +217,7 @@ theme_tt <- function(style = "slide", palette = "green",
     # This sets the position and alignment of the legend,
     # removes a title and backround for it and sets the requirements for any text within the legend.
     # The legend may often need some more manual tweaking when it comes to its exact position based on the plot coordinates.
-    legend.position = "bottom",
+    legend.position = legend_position,
     legend.text.align = 0,
     legend.background = ggplot2::element_blank(),
     legend.margin = ggplot2::margin(0, 0, 0, 0),
@@ -291,9 +293,14 @@ theme_tt <- function(style = "slide", palette = "green",
   if (legend_title) {
     tttheme <- tttheme + ggplot2::theme(legend.title = ggplot2::element_text(
       family = font,
-      size = legend_title_size,
-      hjust = 0.5
+      size = legend_title_size
     ))
+    if (legend_position == "bottom" || legend_position == "top") {
+      tttheme <- tttheme + ggplot2::theme(legend.title = ggplot2::element_text(hjust = 0.5))
+    }
+    if (legend_position == "right" || legend_position == "left") {
+      tttheme <- tttheme + ggplot2::theme(legend.title = ggplot2::element_text(hjust = 0))
+    }
   }
 
   tttheme
