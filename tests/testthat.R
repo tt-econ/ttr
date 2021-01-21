@@ -1,4 +1,5 @@
 library(testthat)
 library(ttr)
+library(vdiffr)
 
-test_check("ttr")
+devtools::test()
