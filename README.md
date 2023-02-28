@@ -1,7 +1,7 @@
 # Commonly used R functions for ttecon team
 <!-- badges: start -->
-[![R build status](https://github.com/ttecon/ttr/workflows/R-CMD-check/badge.svg)](https://github.com/ttecon/ttr/actions)
-[![Codecov test coverage](https://codecov.io/gh/ttecon/ttr/branch/main/graph/badge.svg)](https://codecov.io/gh/ttecon/ttr?branch=main)
+[![R build status](https://github.com/tt-econ/ttr/workflows/R-CMD-check/badge.svg)](https://github.com/tt-econ/ttr/actions)
+[![Codecov test coverage](https://codecov.io/gh/tt-econ/ttr/branch/main/graph/badge.svg)](https://codecov.io/gh/tt-econ/ttr?branch=main)
 <!-- badges: end -->
 
 ## Overview
@@ -13,7 +13,7 @@ The `ttr` package includes commonly used R functions for ttecon team.
 
 ```R
    # install.packages("devtools")
-   devtools::install_github('https://github.com/ttecon/ttr')
+   devtools::install_github('https://github.com/tt-econ/ttr')
    library(ttr)
 ```
 
